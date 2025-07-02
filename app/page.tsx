@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObserver";
 import { useMoveBoxHighlight } from "@/hooks/useMoveBoxHighlight";
+import Carousel from "./Carousel";
 
 export default function Home() {
   const { elementRef, visibleId } = useSingleIntersectionObserver();
@@ -219,12 +220,33 @@ export default function Home() {
       </section>
       <section
         id="portfolio"
-        className=" w-full h-screen  bg-[#1A1A1A]"
+        className=" w-full  bg-[#1A1A1A]"
         ref={(el) => {
           elementRef.current[2] = el;
         }}
       >
-        test
+        <div className="relative w-full h-screen flex items-center justify-center">
+          <div className=" absolute left-0 top-0 w-[50%] -z-0 h-full bg-[linear-gradient(to_right,rgba(71,71,71,0.5),rgba(71,71,71,0))]"></div>
+          <div className="relative z-10 w-full h-[550] flex flex-col gap-12">
+            <h1 className=" text-white font-bold text-[50px] text-center">
+              Fullstack Developer
+            </h1>
+            <Carousel
+              imgsrc={[
+                "/landingpage/fullstacktest.png",
+                "/landingpage/fullstacktest.png",
+                "/landingpage/fullstacktest.png",
+                "/landingpage/fullstacktest.png",
+                "/landingpage/fullstacktest.png",
+                "/landingpage/fullstacktest.png",
+                "/landingpage/fullstacktest.png",
+              ]}
+            ></Carousel>
+          </div>
+        </div>
+        <div className="relative w-full h-screen">
+          <div className=" absolute left-0 top-0 w-[50%] -z-0 h-full bg-[linear-gradient(to_right,rgba(71,71,71,0.5),rgba(71,71,71,0))]"></div>
+        </div>
       </section>
       <section
         id="contact"
