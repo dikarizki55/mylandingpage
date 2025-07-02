@@ -17,7 +17,7 @@ export default function Home() {
       <nav
         style={{
           top: visibleId === "home" ? "calc((100vh - 580px) / 2)" : "43px",
-          left: visibleId === "home" ? "calc((100vw - 1110px) / 2)" : "50%",
+          left: visibleId === "home" ? "calc((100vw - 1110px) / 2)" : "50vw",
           transform: visibleId === "home" ? "" : "translate(-50%,0)",
         }}
         className=" fixed z-20 gap-14 list-none flex font-bold text-base text-white top-[95px] transition-all duration-1000"
@@ -225,27 +225,39 @@ export default function Home() {
           elementRef.current[2] = el;
         }}
       >
-        <div className="relative w-full h-screen flex items-center justify-center">
+        <div className="relative w-full h-screen flex items-center justify-center z-0">
           <div className=" absolute left-0 top-0 w-[50%] -z-0 h-full bg-[linear-gradient(to_right,rgba(71,71,71,0.5),rgba(71,71,71,0))]"></div>
           <div className="relative z-10 w-full h-[550] flex flex-col gap-12">
             <h1 className=" text-white font-bold text-[50px] text-center">
               Fullstack Developer
             </h1>
             <Carousel
-              imgsrc={[
-                "/landingpage/fullstacktest.png",
-                "/landingpage/fullstacktest.png",
-                "/landingpage/fullstacktest.png",
-                "/landingpage/fullstacktest.png",
-                "/landingpage/fullstacktest.png",
-                "/landingpage/fullstacktest.png",
-                "/landingpage/fullstacktest.png",
+              items={[
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
               ]}
             ></Carousel>
           </div>
         </div>
-        <div className="relative w-full h-screen">
+        <div className="relative w-full h-screen flex items-center justify-center">
           <div className=" absolute left-0 top-0 w-[50%] -z-0 h-full bg-[linear-gradient(to_right,rgba(71,71,71,0.5),rgba(71,71,71,0))]"></div>
+          <div className="relative z-10 w-full h-[550] flex flex-col gap-12">
+            <h1 className=" text-white font-bold text-[50px] text-center">
+              3d Artist
+            </h1>
+            <Carousel
+              items={[
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
+              ]}
+            ></Carousel>
+          </div>
         </div>
       </section>
       <section

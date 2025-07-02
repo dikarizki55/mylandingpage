@@ -17,7 +17,7 @@ export function useSingleIntersectionObserver<
 
         setVisibleId(visible[0]);
       },
-      { threshold: 0.5 }
+      { threshold: 0.4 }
     );
 
     elementRef.current.forEach((el) => {
