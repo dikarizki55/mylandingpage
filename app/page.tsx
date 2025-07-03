@@ -235,6 +235,26 @@ export default function Home() {
               items={[
                 {
                   src: "/landingpage/fullstacktest.png",
+                  title: "satu",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "dua",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "tiga",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
                 },
@@ -250,6 +270,26 @@ export default function Home() {
             </h1>
             <Carousel
               items={[
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
+                {
+                  src: "/landingpage/fullstacktest.png",
+                  title: "",
+                  description: "",
+                },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",

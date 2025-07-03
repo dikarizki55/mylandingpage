@@ -10,15 +10,27 @@ const Blank = () => {
   );
 };
 
+type Item = {
+  src: string;
+  title: string;
+  description: string;
+};
+
+type Props = {
+  items: Item[];
+};
+
 const Modal = ({
   isShow,
   setIsShow,
+  item,
 }: {
   isShow: boolean;
   setIsShow: (open: boolean) => void;
+  item: Item;
 }) => {
   return createPortal(
-    <div className=" w-full h-screen fixed top-0 left-0 bg-[#00000078] z-10 flex justify-center items-center">
+    <div className=" w-full h-screen fixed top-0 left-0 bg-[#00000078] z-30 flex justify-center items-center">
       <div
         onClick={() => {
           setIsShow(false);
@@ -27,16 +39,17 @@ const Modal = ({
       >
         close
       </div>
+      <div>
+        {item.description} <br />
+        {item.src} <br />
+        {item.title} <br />
+      </div>
     </div>,
     document.body
   );
 };
 
-const Carousel = ({
-  items,
-}: {
-  items: { src: string; title: string; description: string }[];
-}) => {
+const Carousel = ({ items }: Props) => {
   // MODAL
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
@@ -70,6 +83,13 @@ const Carousel = ({
   const prev = () => {
     caroId < 1 ? setCaroId(0) : setCaroId(caroId - 1);
   };
+
+  const handleModal = (index: number) => {
+    if (index === caroId) {
+      setShowModal(true);
+    }
+  };
+
   return (
     <div className="">
       <div className="relative overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black,black,transparent)]">
@@ -86,9 +106,13 @@ const Carousel = ({
           ))}
           {items.map((el, index) => (
             <div
-              onClick={() => setShowModal(!showModal)}
+              onClick={() => {
+                handleModal(index);
+              }}
               key={index}
-              className="w-[348px] h-[410px] rounded-[31px] overflow-hidden relative flex-shrink-0"
+              className={`w-[348px] h-[410px] rounded-[31px] overflow-hidden relative flex-shrink-0 ${
+                caroId === index ? "cursor-pointer" : ""
+              }`}
             >
               <Image
                 src={el.src}
@@ -129,7 +153,11 @@ const Carousel = ({
         </span>
       </div>
       {showModal ? (
-        <Modal setIsShow={setShowModal} isShow={showModal}></Modal>
+        <Modal
+          setIsShow={setShowModal}
+          isShow={showModal}
+          item={items[caroId]}
+        ></Modal>
       ) : (
         ""
       )}
