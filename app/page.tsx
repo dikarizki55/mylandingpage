@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObserver";
 import { useMoveBoxHighlight } from "@/hooks/useMoveBoxHighlight";
 import Carousel from "./Carousel";
+import Contact from "./Contact";
 
 export default function Home() {
   const { elementRef, visibleId } = useSingleIntersectionObserver();
@@ -64,44 +65,38 @@ export default function Home() {
             </p>
             <div className="w-[330px] flex flex-col gap-8">
               <div className="flex justify-between">
-                <Image
-                  width={80}
-                  height={40}
+                <img
                   alt="nextjs"
                   src="/landingpage/Next js logo.png"
-                  className="h-auto object-contain"
+                  className=" w-[80px] h-auto object-contain"
                 />
-                <Image
-                  width={80}
-                  height={40}
+                <img
                   alt="express"
                   src="/landingpage/express logo 1.png"
-                  className="h-auto object-contain"
+                  className=" w-[80px] h-auto object-contain"
                 />
-                <Image
-                  width={80}
-                  height={40}
+                <img
                   alt="nodejs"
                   src="/landingpage/nodejsLight 1.png"
-                  className="h-auto object-contain"
+                  className=" w-[80px] h-auto object-contain"
                 />
               </div>
               <div className="w-full flex justify-center">
-                <Image
-                  width={135}
-                  height={42}
+                <img
                   alt="blender"
                   src="/landingpage/blender logo.png"
-                  className="h-auto object-contain"
+                  className=" w-[135px] h-auto object-contain"
                 />
               </div>
             </div>
           </div>
           <div className=" relative w-[745] h-[582] rounded-[63] overflow-hidden">
             <Image
+              priority={true}
               src="/landingpage/myphotos.png"
               alt="myphoto"
               fill
+              sizes="max-width: 768px"
               className="object-cover"
             />
           </div>
@@ -123,6 +118,7 @@ export default function Home() {
                   src="/landingpage/fullstacktest.png"
                   alt="fullstackabout"
                   fill
+                  sizes="max-width: 768px"
                   className="object-cover"
                 />
               </div>
@@ -150,10 +146,11 @@ export default function Home() {
             <div>
               <div className="flex justify-between w-[670]">
                 <Image
-                  width={110}
                   height={40}
+                  width={110}
                   alt="nextjs"
                   src="/landingpage/Next js logo.png"
+                  style={{ width: "auto" }}
                   className="h-auto object-contain"
                 />
                 <Image
@@ -161,6 +158,7 @@ export default function Home() {
                   height={40}
                   alt="express"
                   src="/landingpage/express logo 1.png"
+                  style={{ width: "auto" }}
                   className="h-auto object-contain"
                 />
                 <Image
@@ -168,6 +166,7 @@ export default function Home() {
                   height={40}
                   alt="nodejs"
                   src="/landingpage/nodejsLight 1.png"
+                  style={{ width: "auto" }}
                   className="h-auto object-contain"
                 />
               </div>
@@ -183,6 +182,7 @@ export default function Home() {
                   src="/landingpage/fullstacktest.png"
                   alt="fullstackabout"
                   fill
+                  sizes="max-width: 768px"
                   className="object-cover"
                 />
               </div>
@@ -211,6 +211,7 @@ export default function Home() {
                   height={40}
                   alt="blender"
                   src="/landingpage/blender logo.png"
+                  style={{ width: "auto" }}
                   className="h-auto object-contain"
                 />
               </div>
@@ -236,27 +237,33 @@ export default function Home() {
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "satu",
-                  description: "",
+                  description:
+                    "dicoba apakah bisa ini nanti \n \n bisa kok ternyata iniii \n \nkalo tidak bisa gimana?\n test apakah aku hafal layout keyboardku",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "dua",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "tiga",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
               ]}
             ></Carousel>
@@ -274,26 +281,31 @@ export default function Home() {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
                 {
                   src: "/landingpage/fullstacktest.png",
                   title: "",
                   description: "",
+                  link: "/linklain",
                 },
               ]}
             ></Carousel>
@@ -302,12 +314,13 @@ export default function Home() {
       </section>
       <section
         id="contact"
-        className=" w-full h-screen bg-[#1A1A1A]"
+        className=" relative w-full h-screen bg-[#1A1A1A] flex items-center justify-center"
         ref={(el) => {
           elementRef.current[3] = el;
         }}
       >
-        test
+        <div className=" absolute left-0 top-0 w-full -z-0 h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_70%,rgba(50,50,50,0.8))]"></div>
+        <Contact></Contact>
       </section>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import React from "react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -14,6 +15,7 @@ type Item = {
   src: string;
   title: string;
   description: string;
+  link: string;
 };
 
 type Props = {
@@ -31,18 +33,41 @@ const Modal = ({
 }) => {
   return createPortal(
     <div className=" w-full h-screen fixed top-0 left-0 bg-[#00000078] z-30 flex justify-center items-center">
-      <div
-        onClick={() => {
-          setIsShow(false);
-        }}
-        className=" bg-red-500 text-white cursor-pointer"
-      >
-        close
-      </div>
-      <div>
-        {item.description} <br />
-        {item.src} <br />
-        {item.title} <br />
+      <div className=" relative w-[1010px] h-[600px] bg-[#404040] rounded-2xl flex items-center justify-center gap-8">
+        <div
+          onClick={() => {
+            setIsShow(false);
+          }}
+          className=" bg-red-500 text-white cursor-pointer w-6 h-6 flex justify-center items-center rounded-full absolute right-4 top-4 text-s"
+        >
+          <span className=" -mt-1">x</span>
+        </div>
+        <div className=" w-[350px] h-[460px] rounded-[28px] overflow-hidden relative">
+          <Image
+            src={item.src}
+            alt={item.src.split("/").pop() || "unknown"}
+            fill
+            className="object-cover"
+          ></Image>
+        </div>
+        <div className=" w-[535px] h-[460px] flex flex-col gap-8">
+          <h1 className=" text-white text-5xl font-bold">{item.title}</h1>
+          <p className=" font-light text-xl text-[#AFAFAF]">
+            {item.description.split(`\n`).map((text, i) => (
+              <React.Fragment key={i}>
+                {text} <br />
+              </React.Fragment>
+            ))}
+          </p>
+          <div>
+            <a
+              href={item.link}
+              className=" px-6 py-2.5 font-bold text-xl bg-[#ffffff26] border border-white rounded-full text-white"
+            >
+              Open
+            </a>
+          </div>
+        </div>
       </div>
     </div>,
     document.body
@@ -118,6 +143,7 @@ const Carousel = ({ items }: Props) => {
                 src={el.src}
                 alt={el.src.split("/").pop() || "unknown"}
                 fill
+                sizes="max-width: 500px"
                 className="object-cover"
               />
             </div>
