@@ -3,49 +3,115 @@
 import { useEffect, useRef, useState } from "react";
 
 const Page = () => {
-  const image = ["abc", "cde", "efg", "hij"];
+  const [isOpen, setIsOpen] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const [idCaro, setIdCaro] = useState(0);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const startY = useRef<number | null>(null);
+  const currentY = useRef<number>(0);
 
   useEffect(() => {
-    console.log(idCaro);
-  }, [idCaro]);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+  }, []);
 
-  const visible = 2;
+  const handleOpen = () => {
+    setIsOpen(true);
+    setTimeout(() => {
+      if (modalRef.current) {
+        modalRef.current.style.transition = "transform 0.3s ease";
+        setTimeout(() => {
+          if (modalRef.current) {
+            modalRef.current.style.transform = "translate(0)";
 
-  const next = () => {
-    idCaro < image.length - visible ? setIdCaro(idCaro + 1) : setIdCaro(0);
+            modalRef.current.addEventListener("transitionend", () => {
+              if (modalRef.current) {
+                modalRef.current.style.transition = "";
+              }
+            });
+          }
+        }, 0.1);
+      }
+    }, 0.01);
   };
 
-  const prev = () => {
-    idCaro <= 0 ? setIdCaro(image.length - visible) : setIdCaro(idCaro - 1);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startY.current = e.touches[0].clientY;
+    console.log("start");
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (startY.current === null) return;
+
+    const touchY = e.touches[0].clientY;
+    const diffY = touchY - startY.current;
+
+    if (diffY > 0) {
+      currentY.current = diffY;
+
+      if (modalRef.current) {
+        modalRef.current.style.transform = `translateY(${diffY}px)`;
+      }
+    }
+
+    console.log(currentY.current);
+  };
+
+  const handleTouchEnd = () => {
+    if (currentY.current > 20) {
+      if (modalRef.current) {
+        modalRef.current.style.transition = `transform 1s ease`;
+        const heightModal = modalRef.current.offsetHeight;
+        modalRef.current.style.transform = `translateY(${heightModal + 100}px)`;
+        modalRef.current.addEventListener(
+          "transitionend",
+          () => {
+            setIsOpen(false);
+            if (modalRef.current) {
+              modalRef.current.style.transition = ``;
+            }
+          },
+          { once: true }
+        );
+      }
+    } else {
+      if (modalRef.current) {
+        modalRef.current.style.transition = `transform 0.3s ease`;
+        modalRef.current.style.transform = `translateY(0)`;
+
+        modalRef.current.addEventListener(
+          "transitionend",
+          () => {
+            if (modalRef.current) {
+              modalRef.current.style.transition = ``;
+            }
+          },
+          { once: true }
+        );
+      }
+    }
+
+    startY.current = null;
+    currentY.current = 0;
   };
 
   return (
     <div className="flex gap-2">
-      <div
-        ref={containerRef}
-        style={{ width: 108 * visible - 8 }}
-        className="overflow-hidden"
-      >
+      <button className=" text-white text-9xl" onClick={handleOpen}>
+        Click me
+      </button>
+      {isOpen && (
         <div
-          className="flex gap-2 transition-all duration-1000"
-          style={{ transform: `translate(${-108 * idCaro}px,0)` }}
+          ref={modalRef}
+          onTouchMove={handleTouchMove}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{ transform: "translateY(500px)" }}
+          className=" fixed left-0 right-0 bottom-0 h-[500px] bg-red-500 overflow-y-auto max-h-[80vh]"
         >
-          {image.map((el, index) => (
-            <div
-              key={index}
-              className=" w-[100px] h-[150px] border flex-shrink-0"
-            >
-              {el}
-            </div>
-          ))}
+          swipe down to close
         </div>
-      </div>
-      <div onClick={prev}>prev</div>
-      <div onClick={next}>next</div>
+      )}
     </div>
   );
 };

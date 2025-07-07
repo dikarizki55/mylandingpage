@@ -85,6 +85,7 @@ const Contact = () => {
             type="text"
             value={form.name}
             onChange={handleChange}
+            required
             className=" w-3xs h-7 border border-white rounded-full text-xs px-4 text-white"
           />
         </div>
@@ -95,6 +96,7 @@ const Contact = () => {
             type="email"
             value={form.email}
             onChange={handleChange}
+            required
             className=" w-3xs h-7 border border-white rounded-full text-xs px-4 text-white"
           />
         </div>
@@ -106,6 +108,7 @@ const Contact = () => {
             rows={10}
             value={form.message}
             onChange={handleChange}
+            required
             className=" border border-white rounded-2xl text-white px-4 py-2 text-sm h-28"
           ></textarea>
         </div>
