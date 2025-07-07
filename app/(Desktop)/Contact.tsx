@@ -1,5 +1,6 @@
 "use client";
 
+import { getHandleSubmit } from "@/lib/useSubmitMessage";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -20,10 +21,9 @@ const Contact = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(form);
-  };
+  const handleSubmit = getHandleSubmit(form, () =>
+    setForm({ name: "", email: "", message: "" })
+  );
 
   const handleCopy = async (text: string) => {
     try {

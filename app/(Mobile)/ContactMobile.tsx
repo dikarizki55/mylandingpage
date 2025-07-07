@@ -1,4 +1,5 @@
 "use client";
+import { getHandleSubmit } from "@/lib/useSubmitMessage";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -29,10 +30,9 @@ const ContactMobile = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(form);
-  };
+  const handleSubmit = getHandleSubmit(form, () => {
+    setForm({ name: "", email: "", message: "" });
+  });
 
   return (
     <div className=" w-full min-h-[844px] px-10 pt-20 pb-40">
@@ -86,6 +86,7 @@ const ContactMobile = () => {
             name="name"
             type="text"
             onChange={handleChange}
+            value={form.name}
             required
             className="w-full border border-white rounded-full text-base px-4 py-1 text-white"
           />
@@ -96,6 +97,7 @@ const ContactMobile = () => {
             name="email"
             type="email"
             onChange={handleChange}
+            value={form.email}
             required
             className="w-full border border-white rounded-full text-base px-4 py-1 text-white"
           />
