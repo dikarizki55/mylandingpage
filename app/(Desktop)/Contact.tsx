@@ -21,9 +21,17 @@ const Contact = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = getHandleSubmit(form, () =>
-    setForm({ name: "", email: "", message: "" })
-  );
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSuccess = () => {
+    setForm({ name: "", email: "", message: "" });
+    setIsSuccess(true);
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 3000);
+  };
+
+  const handleSubmit = getHandleSubmit(form, () => handleSuccess());
 
   const handleCopy = async (text: string) => {
     try {
@@ -113,12 +121,18 @@ const Contact = () => {
           ></textarea>
         </div>
         <div className=" flex justify-center">
-          <button
-            type="submit"
-            className=" bg-white px-9 py-2 font-bold text-base cursor-pointer text-black rounded-2xl"
-          >
-            Send Message
-          </button>
+          {isSuccess ? (
+            <span className=" bg-white px-9 py-2 font-bold text-base text-black rounded-2xl">
+              Message Sended!
+            </span>
+          ) : (
+            <button
+              type="submit"
+              className=" bg-white px-9 py-2 font-bold text-base cursor-pointer text-black rounded-2xl"
+            >
+              Send Message
+            </button>
+          )}
         </div>
       </form>
     </div>
