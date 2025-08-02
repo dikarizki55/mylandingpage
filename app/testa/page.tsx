@@ -13,7 +13,7 @@ const Page = () => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     }
-  }, []);
+  }, [isOpen]);
 
   const handleOpen = () => {
     setIsOpen(true);

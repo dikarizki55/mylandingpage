@@ -1,10 +1,11 @@
 "use client";
 import { getHandleSubmit } from "@/lib/useSubmitMessage";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ContactMobile = () => {
   const [copied, setCopied] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const handleCopy = async (text: string) => {
     try {
@@ -33,6 +34,10 @@ const ContactMobile = () => {
   const handleSubmit = getHandleSubmit(form, () => {
     setForm({ name: "", email: "", message: "" });
   });
+
+  useEffect(() => setIsClient(true), [isClient]);
+
+  if (!isClient) return null;
 
   return (
     <div className=" w-full min-h-[844px] px-10 pt-20 pb-40">

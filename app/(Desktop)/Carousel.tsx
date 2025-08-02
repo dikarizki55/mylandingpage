@@ -1,39 +1,60 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-const Blank = () => {
+const Blank = ({
+  width = 348,
+  height = 410,
+}: {
+  width?: number;
+  height?: number;
+}) => {
   return (
-    <div className="w-[348px] h-[410px] rounded-[31px] relative flex-shrink-0 bg-[#404040]"></div>
+    <div
+      style={{ width, height }}
+      className={`rounded-[31px] relative flex-shrink-0 bg-[#404040]`}
+    ></div>
   );
 };
 
 type Item = {
   src: string;
   title: string;
-  description: string;
-  link: string;
+  description: React.ReactNode;
+  link?: string;
+  video?: boolean;
 };
 
 type Props = {
   items: Item[];
+  width?: number;
+  height?: number;
 };
 
 const Modal = ({
-  isShow,
   setIsShow,
   item,
+  width = 350,
+  height = 460,
 }: {
-  isShow: boolean;
   setIsShow: (open: boolean) => void;
   item: Item;
+  width?: number;
+  height?: number;
 }) => {
   return createPortal(
     <div className=" w-full h-screen fixed top-0 left-0 bg-[#00000078] z-30 flex justify-center items-center">
-      <div className=" relative w-[1010px] h-[600px] bg-[#404040] rounded-2xl flex items-center justify-center gap-8">
+      <div
+        className=" w-full h-full fixed left-0 top-0"
+        onClick={() => {
+          setIsShow(false);
+        }}
+      ></div>
+      <div className=" relative px-20 py-20 bg-[#404040] rounded-2xl flex items-center justify-center gap-8">
         <div
           onClick={() => {
             setIsShow(false);
@@ -42,30 +63,46 @@ const Modal = ({
         >
           <span className=" -mt-1">x</span>
         </div>
-        <div className=" w-[350px] h-[460px] rounded-[28px] overflow-hidden relative">
-          <Image
-            src={item.src}
-            alt={item.src.split("/").pop() || "unknown"}
-            fill
-            className="object-cover"
-          ></Image>
+        <div
+          style={{ width, height }}
+          className={`rounded-[28px] overflow-hidden relative`}
+        >
+          {item.video ? (
+            <video
+              className=" w-full h-full object-cover"
+              src={item.src}
+              autoPlay
+              muted
+              loop
+            ></video>
+          ) : (
+            <Image
+              src={item.src}
+              alt={item.src.split("/").pop() || "unknown"}
+              fill
+              className="object-cover"
+            ></Image>
+          )}
         </div>
-        <div className=" w-[535px] h-[460px] flex flex-col gap-8">
+        <div className=" w-[535px] flex flex-col gap-8">
           <h1 className=" text-white text-5xl font-bold">{item.title}</h1>
-          <p className=" font-light text-xl text-[#AFAFAF]">
-            {item.description.split(`\n`).map((text, i) => (
+          <p className=" font-light text-base text-[#AFAFAF]">
+            {/* {item.description.split(`\n`).map((text, i) => (
               <React.Fragment key={i}>
                 {text} <br />
               </React.Fragment>
-            ))}
+            ))} */}
+            {item.description}
           </p>
-          <div>
-            <a
-              href={item.link}
-              className=" px-6 py-2.5 font-bold text-xl bg-[#ffffff26] border border-white rounded-full text-white"
-            >
-              Open
-            </a>
+          <div className=" mt-5">
+            {item.link && (
+              <Link
+                href={item.link}
+                className=" px-4 py-2 font-bold text-base bg-[#ffffff26] border border-white rounded-full text-white"
+              >
+                Open
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -74,8 +111,14 @@ const Modal = ({
   );
 };
 
-const Carousel = ({ items }: Props) => {
+const Carousel = ({ items, width = 348, height = 410 }: Props) => {
   // MODAL
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     const scrollbarWidth =
@@ -103,10 +146,18 @@ const Carousel = ({ items }: Props) => {
   const [caroId, setCaroId] = useState(0);
 
   const next = () => {
-    caroId < items.length - 1 ? setCaroId(caroId + 1) : setCaroId(caroId);
+    if (caroId < items.length - 1) {
+      setCaroId(caroId + 1);
+    } else {
+      setCaroId(caroId);
+    }
   };
   const prev = () => {
-    caroId < 1 ? setCaroId(0) : setCaroId(caroId - 1);
+    if (caroId < 1) {
+      setCaroId(0);
+    } else {
+      setCaroId(caroId - 1);
+    }
   };
 
   const handleModal = (index: number) => {
@@ -115,6 +166,19 @@ const Carousel = ({ items }: Props) => {
     }
   };
 
+  // handle video pause when modal is open
+  const videoRef = useRef<(HTMLVideoElement | null)[]>([]);
+
+  useEffect(() => {
+    if (showModal) {
+      if (videoRef.current) videoRef.current.forEach((video) => video?.pause());
+    } else {
+      if (videoRef.current) videoRef.current.forEach((video) => video?.play());
+    }
+  }, [videoRef, showModal]);
+
+  if (!isClient) return null;
+
   return (
     <div className="">
       <div className="relative overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black,black,transparent)]">
@@ -122,12 +186,12 @@ const Carousel = ({ items }: Props) => {
           className="flex gap-8 relative transition-all duration-1000"
           style={{
             transform: `translateX(calc(50vw - ${
-              (348 + 32) * 3 + 348 / 2 + caroId * (348 + 32)
+              (width + 32) * 3 + width / 2 + caroId * (width + 32)
             }px))`,
           }}
         >
           {Array.from({ length: 3 }).map((_, i) => (
-            <Blank key={i}></Blank>
+            <Blank key={i} width={width} height={height}></Blank>
           ))}
           {items.map((el, index) => (
             <div
@@ -135,21 +199,35 @@ const Carousel = ({ items }: Props) => {
                 handleModal(index);
               }}
               key={index}
-              className={`w-[348px] h-[410px] rounded-[31px] overflow-hidden relative flex-shrink-0 ${
+              style={{ width: width ?? "348", height: height ?? "410" }}
+              className={`rounded-[31px] overflow-hidden relative flex-shrink-0 ${
                 caroId === index ? "cursor-pointer" : ""
               }`}
             >
-              <Image
-                src={el.src}
-                alt={el.src.split("/").pop() || "unknown"}
-                fill
-                sizes="max-width: 500px"
-                className="object-cover"
-              />
+              {el.video ? (
+                <video
+                  ref={(el) => {
+                    videoRef.current[index] = el;
+                  }}
+                  className=" w-full h-full object-cover"
+                  src={el.src}
+                  autoPlay
+                  muted
+                  loop
+                ></video>
+              ) : (
+                <Image
+                  src={el.src}
+                  alt={el.src.split("/").pop() || "unknown"}
+                  fill
+                  sizes="max-width: 500px"
+                  className="object-cover"
+                />
+              )}
             </div>
           ))}
           {Array.from({ length: 3 }).map((_, i) => (
-            <Blank key={i}></Blank>
+            <Blank key={i} width={width} height={height}></Blank>
           ))}
         </div>
       </div>
@@ -180,8 +258,9 @@ const Carousel = ({ items }: Props) => {
       </div>
       {showModal ? (
         <Modal
+          width={width}
+          height={height}
           setIsShow={setShowModal}
-          isShow={showModal}
           item={items[caroId]}
         ></Modal>
       ) : (

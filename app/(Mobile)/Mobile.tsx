@@ -5,22 +5,23 @@ import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObse
 import Image from "next/image";
 import CarouselMobile from "./CarouselMobile";
 import ContactMobile from "./ContactMobile";
+import { PageProps } from "../page";
 
-const page = () => {
+const Page = ({ ...sharedProps }: PageProps) => {
   const { elementRef, visibleId } = useSingleIntersectionObserver();
   const { boxStyle, navRef } = useMoveBoxHighlight(visibleId, 40);
 
   const navItems = [
-    { section: "home", src: "/landingpage/mobile/home.svg" },
-    { section: "aboutme", src: "/landingpage/mobile/aboutme.svg" },
-    { section: "portfolio", src: "/landingpage/mobile/portfolio.svg" },
-    { section: "contact", src: "/landingpage/mobile/contact.svg" },
+    { section: "homeMobile", src: "/landingpage/mobile/home.svg" },
+    { section: "aboutmeMobile", src: "/landingpage/mobile/aboutme.svg" },
+    { section: "portfolioMobile", src: "/landingpage/mobile/portfolio.svg" },
+    { section: "contactMobile", src: "/landingpage/mobile/contact.svg" },
   ];
 
   return (
     <div className=" text-white">
       <section
-        id="home"
+        id="homeMobile"
         ref={(el) => {
           elementRef.current[0] = el;
         }}
@@ -31,17 +32,14 @@ const page = () => {
           <div className=" relative w-full h-[360px] overflow-hidden rounded-[40px]">
             <Image
               priority={true}
-              src="/landingpage/myphotos.png"
+              src={sharedProps.home.image}
               alt="myphoto"
               fill
               sizes="max-width: 300px"
               className="object-cover"
             />
           </div>
-          <h1 className=" font-bold text-2xl">
-            Hi, I'm Dika – <br />
-            a Full Stack Developer <br />& 3D Artist.
-          </h1>
+          <h1 className=" font-bold text-2xl">{sharedProps.home.title}</h1>
         </div>
         <div className=" flex flex-col gap-6 items-center">
           <div className=" flex gap-7 justify-center items-center">
@@ -85,7 +83,7 @@ const page = () => {
         </div>
       </section>
       <section
-        id="aboutme"
+        id="aboutmeMobile"
         ref={(el) => {
           elementRef.current[1] = el;
         }}
@@ -93,9 +91,9 @@ const page = () => {
       >
         <div className=" relative w-full flex flex-col gap-8 items-center py-12">
           <div className=" absolute left-0 top-0 w-full -z-0 h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_70%,rgba(50,50,50,0.8))]"></div>
-          <div className=" relative w-[315px] h-[370px] rounded-[40px] overflow-hidden flex-none">
+          <div className=" relative w-[315px] h-[220px] rounded-[10px] overflow-hidden flex-none">
             <Image
-              src="/landingpage/fullstacktest.png"
+              src={sharedProps.aboutme.fullstack.image}
               alt="fullstack"
               fill
               sizes="max-height: 380px"
@@ -103,21 +101,11 @@ const page = () => {
             ></Image>
           </div>
           <div className=" relative text-white w-[320px]">
-            <h1 className=" text-3xl font-bold">Full Stack Developer</h1>
+            <h1 className=" text-3xl font-bold">
+              {sharedProps.aboutme.fullstack.title}
+            </h1>
             <p className=" font-light text-sm text-[#afafaf] mt-4 leading-4">
-              Hi, I'm Dika Rizki, a passionate Full Stack Developer with a fresh
-              perspective and a strong drive to build meaningful web
-              experiences. I specialize in modern JavaScript technologies like
-              Next.js, React, and Express, and I enjoy crafting scalable and
-              visually clean web applications. <br /> <br />
-              Though I'm a fresh graduate, I've built several portfolio projects
-              including SaaS-style websites that reflect both technical
-              structure and design thinking. I love working remotely and
-              constantly push myself to learn new technologies and stay
-              up-to-date with the web ecosystem. <br /> <br />
-              My approach combines logical architecture with visual
-              clarity—bridging the gap between frontend experience and backend
-              performance.
+              {sharedProps.aboutme.fullstack.description}
             </p>
           </div>
           <div className=" relative flex gap-8">
@@ -152,30 +140,21 @@ const page = () => {
         </div>
         <div className=" relative w-full flex flex-col gap-8 items-center py-12">
           <div className=" absolute left-0 top-0 w-full -z-0 h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_70%,rgba(50,50,50,0.8))]"></div>
-          <div className=" relative w-[315px] h-[370px] rounded-[40px] overflow-hidden flex-none">
+          <div className=" relative w-[315px] h-[350px] rounded-[40px] overflow-hidden flex-none">
             <Image
-              src="/landingpage/fullstacktest.png"
+              src={sharedProps.aboutme.artist.image}
               alt="fullstack"
               fill
-              sizes="max-height: 380px"
+              sizes="max-height: 500px"
               className=" object-cover"
             ></Image>
           </div>
           <div className=" relative text-white w-[320px]">
-            <h1 className=" text-3xl font-bold">3d Artist</h1>
+            <h1 className=" text-3xl font-bold">
+              {sharedProps.aboutme.artist.title}
+            </h1>
             <p className=" font-light text-sm text-[#afafaf] mt-4 leading-4">
-              I'm Dika Rizki, a 3D Artist with hands-on experience in both
-              motion graphics and architectural visualization. Using Blender as
-              my main tool, I bring concepts to life through storytelling-driven
-              visuals that connect with audiences.
-              <br /> <br />
-              I work remotely, collaborating on projects that require both
-              creative direction and technical execution. Whether it’s animating
-              dynamic scenes or designing immersive environments, I aim to craft
-              visuals that feel intentional and engaging.
-              <br /> <br />
-              Currently, I’m focused on sharpening my skills and exploring new
-              storytelling techniques through 3D.
+              {sharedProps.aboutme.artist.description}
             </p>
           </div>
           <div className=" relative flex gap-8">
@@ -193,7 +172,7 @@ const page = () => {
       </section>
 
       <section
-        id="portfolio"
+        id="portfolioMobile"
         ref={(el) => {
           elementRef.current[2] = el;
         }}
@@ -205,39 +184,11 @@ const page = () => {
             style={{ marginLeft: "calc((100vw - 310px) / 2)" }}
             className=" text-white font-bold text-5xl"
           >
-            Fullstack Developer
+            {sharedProps.portfolio.fullstack.title}
           </h1>
           <CarouselMobile
-            items={[
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "satu",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij\n\nanvwo\nreig\njfer\nog ewjogijreo",
-                link: "/dicoba",
-              },
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "dua",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij",
-                link: "/dicoba",
-              },
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "tiga",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij",
-                link: "/dicoba",
-              },
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "fullstacktest",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij",
-                link: "/dicoba",
-              },
-            ]}
+            height={310}
+            items={sharedProps.portfolio.fullstack.items}
           ></CarouselMobile>
         </div>
         <div className=" relative w-full h-screen  min-h-[800px] pt-20">
@@ -246,45 +197,17 @@ const page = () => {
             style={{ marginLeft: "calc((100vw - 310px) / 2)" }}
             className=" text-white font-bold text-5xl"
           >
-            3d Artist
+            {sharedProps.portfolio.artist.title}
           </h1>
           <CarouselMobile
-            items={[
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "satu",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij\n\nanvwo\nreig\njfer\nog ewjogijreo",
-                link: "/dicoba",
-              },
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "dua",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij",
-                link: "/dicoba",
-              },
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "tiga",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij",
-                link: "/dicoba",
-              },
-              {
-                src: "/landingpage/fullstacktest.png",
-                title: "fullstacktest",
-                description:
-                  "ewajgoiejwejgbreighu\noerigiurhgssiurh\n\njewpaogijreoij",
-                link: "/dicoba",
-              },
-            ]}
+            height={450}
+            items={sharedProps.portfolio.artist.items}
           ></CarouselMobile>
         </div>
       </section>
 
       <section
-        id="contact"
+        id="contactMobile"
         ref={(el) => {
           elementRef.current[3] = el;
         }}
@@ -293,7 +216,7 @@ const page = () => {
         <ContactMobile></ContactMobile>
       </section>
 
-      <nav className=" fixed bottom-0 h-19 rounded-t-2xl w-full bg-[#ffffff0d] backdrop-blur-sm flex justify-center items-center gap-12">
+      <nav className=" fixed bottom-0 h-19 rounded-t-2xl w-full bg-[#ffffff0a] backdrop-blur-[5px] flex justify-center items-center gap-12">
         <div
           className=" absolute border border-white rounded-full transition-all duration-1000"
           style={{
@@ -333,4 +256,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

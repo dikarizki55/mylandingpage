@@ -6,8 +6,9 @@ import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObse
 import { useMoveBoxHighlight } from "@/hooks/useMoveBoxHighlight";
 import Carousel from "./Carousel";
 import Contact from "./Contact";
+import { PageProps } from "../page";
 
-export default function Home() {
+export default function Home({ ...sharedProps }: PageProps) {
   const { elementRef, visibleId } = useSingleIntersectionObserver();
   const { boxStyle, navRef } = useMoveBoxHighlight(visibleId, 40);
 
@@ -60,8 +61,7 @@ export default function Home() {
           <div className=" w-full h-full flex flex-col justify-between">
             <div></div>
             <p className=" text-white font-bold text-5xl leading-normal">
-              Hi, I'm Dika – <br />
-              a Full Stack Developer <br /> & 3D Artist.
+              {sharedProps.home.title}
             </p>
             <div className="w-[330px] flex flex-col gap-8">
               <div className="flex justify-between">
@@ -93,7 +93,7 @@ export default function Home() {
           <div className=" relative w-[745] h-[582] rounded-[63] overflow-hidden">
             <Image
               priority={true}
-              src="/landingpage/myphotos.png"
+              src={sharedProps.home.image}
               alt="myphoto"
               fill
               sizes="max-width: 768px"
@@ -111,11 +111,11 @@ export default function Home() {
       >
         <div className=" w-full h-screen flex justify-center items-center">
           <div className=" absolute w-full -z-0 h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_70%,rgba(50,50,50,0.8))]"></div>
-          <div className=" relative w-[1162] h-[536] mt-10 flex flex-col items-center z-10">
-            <div className="w-full h-full flex gap-[75px]">
-              <div className="w-[348px] h-[410px] rounded-[31px] mt-4 overflow-hidden relative">
+          <div className=" relative w-[1162] h-[536] flex flex-col gap-10 items-center z-10">
+            <div className="w-full h-full flex items-center justify-center gap-[75px]">
+              <div className="w-[500px] h-[460px] rounded-[31px] mt-4 overflow-hidden relative">
                 <Image
-                  src="/landingpage/fullstacktest.png"
+                  src={sharedProps.aboutme.fullstack.image}
                   alt="fullstackabout"
                   fill
                   sizes="max-width: 768px"
@@ -123,23 +123,11 @@ export default function Home() {
                 />
               </div>
               <div className=" text-white flex flex-col gap-12 w-[681]">
-                <h1 className=" font-bold text-[49px]">Full Stack Developer</h1>
+                <h1 className=" font-bold text-[49px]">
+                  {sharedProps.aboutme.fullstack.title}
+                </h1>
                 <p className=" font-light text-[#AFAFAF] text-[20px] leading-[24px]">
-                  Hi, I'm Dika Rizki, a passionate Full Stack Developer with a
-                  fresh perspective and a strong drive to build meaningful web
-                  experiences. I specialize in modern JavaScript technologies
-                  like Next.js, React, and Express, and I enjoy crafting
-                  scalable and visually clean web applications.
-                  <br /> <br />
-                  Though I'm a fresh graduate, I've built several portfolio
-                  projects including SaaS-style websites that reflect both
-                  technical structure and design thinking. I love working
-                  remotely and constantly push myself to learn new technologies
-                  and stay up-to-date with the web ecosystem.
-                  <br /> <br />
-                  My approach combines logical architecture with visual
-                  clarity—bridging the gap between frontend experience and
-                  backend performance.
+                  {sharedProps.aboutme.fullstack.description}
                 </p>
               </div>
             </div>
@@ -176,31 +164,22 @@ export default function Home() {
         <div className=" w-full h-screen flex justify-center items-center">
           <div className=" absolute w-full -z-0 h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_70%,rgba(50,50,50,0.8))]"></div>
           <div className=" relative z-10 w-[1162] h-[536] mt-10 flex flex-col items-center">
-            <div className="w-full h-full flex gap-[75px]">
-              <div className="w-[348px] h-[410px] rounded-[31px] mt-4 overflow-hidden relative">
+            <div className="w-full h-full flex justify-center gap-[75px]">
+              <div className="w-[500px] h-[460px] rounded-[31px] mt-4 overflow-hidden relative bg-black">
                 <Image
-                  src="/landingpage/fullstacktest.png"
+                  src={sharedProps.aboutme.artist.image}
                   alt="fullstackabout"
                   fill
                   sizes="max-width: 768px"
-                  className="object-cover"
+                  className=" object-cover"
                 />
               </div>
               <div className=" text-white flex flex-col gap-12 w-[681]">
-                <h1 className=" font-bold text-[49px]">3d Artist</h1>
+                <h1 className=" font-bold text-[49px]">
+                  {sharedProps.aboutme.artist.title}
+                </h1>
                 <p className=" font-light text-[#AFAFAF] text-[20px] leading-[24px]">
-                  I'm Dika Rizki, a 3D Artist with hands-on experience in both
-                  motion graphics and architectural visualization. Using Blender
-                  as my main tool, I bring concepts to life through
-                  storytelling-driven visuals that connect with audiences.
-                  <br /> <br />
-                  I work remotely, collaborating on projects that require both
-                  creative direction and technical execution. Whether it’s
-                  animating dynamic scenes or designing immersive environments,
-                  I aim to craft visuals that feel intentional and engaging.
-                  <br /> <br />
-                  Currently, I’m focused on sharpening my skills and exploring
-                  new storytelling techniques through 3D.
+                  {sharedProps.aboutme.artist.description}
                 </p>
               </div>
             </div>
@@ -230,42 +209,12 @@ export default function Home() {
           <div className=" absolute left-0 top-0 w-[50%] -z-0 h-full bg-[linear-gradient(to_right,rgba(71,71,71,0.5),rgba(71,71,71,0))]"></div>
           <div className="relative z-10 w-full h-[550] flex flex-col gap-12">
             <h1 className=" text-white font-bold text-[50px] text-center">
-              Fullstack Developer
+              {sharedProps.portfolio.fullstack.title}
             </h1>
             <Carousel
-              items={[
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "satu",
-                  description:
-                    "dicoba apakah bisa ini nanti \n \n bisa kok ternyata iniii \n \nkalo tidak bisa gimana?\n test apakah aku hafal layout keyboardku",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "dua",
-                  description: "",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "tiga",
-                  description: "",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "",
-                  description: "",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "",
-                  description: "",
-                  link: "/linklain",
-                },
-              ]}
+              width={600}
+              height={400}
+              items={sharedProps.portfolio.fullstack.items}
             ></Carousel>
           </div>
         </div>
@@ -273,42 +222,12 @@ export default function Home() {
           <div className=" absolute left-0 top-0 w-[50%] -z-0 h-full bg-[linear-gradient(to_right,rgba(71,71,71,0.5),rgba(71,71,71,0))]"></div>
           <div className="relative z-10 w-full h-[550] flex flex-col gap-12">
             <h1 className=" text-white font-bold text-[50px] text-center">
-              Fullstack Developer
+              {sharedProps.portfolio.artist.title}
             </h1>
             <Carousel
-              items={[
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "satu",
-                  description:
-                    "dicoba apakah bisa ini nanti \n \n bisa kok ternyata iniii \n \nkalo tidak bisa gimana?\n test apakah aku hafal layout keyboardku",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "dua",
-                  description: "",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "tiga",
-                  description: "",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "",
-                  description: "",
-                  link: "/linklain",
-                },
-                {
-                  src: "/landingpage/fullstacktest.png",
-                  title: "",
-                  description: "",
-                  link: "/linklain",
-                },
-              ]}
+              width={350}
+              height={500}
+              items={sharedProps.portfolio.artist.items}
             ></Carousel>
           </div>
         </div>

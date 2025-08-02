@@ -1,5 +1,3 @@
-import { supabase } from "./supabase/client";
-
 export type FormData = {
   name: string;
   email: string;
