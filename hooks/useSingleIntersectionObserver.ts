@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function useSingleIntersectionObserver<
   T extends HTMLElement = HTMLElement
->() {
+>(threshold?: number) {
   const elementRef = useRef<(T | null)[]>([]);
   const [visibleId, setVisibleId] = useState("");
 
@@ -17,7 +17,7 @@ export function useSingleIntersectionObserver<
 
         setVisibleId(visible[0]);
       },
-      { threshold: 0.4 }
+      { threshold: threshold || 0.4 }
     );
 
     elementRef.current.forEach((el) => {

@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     "https://mylandingpage-git-master-dika-rizkis-projects.vercel.app/"
   ),
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -47,9 +50,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <head>
-        <link rel="icon" href="/favicon.svg" sizes="any" />
-      </head>
       <body>{children}</body>
     </html>
   );
