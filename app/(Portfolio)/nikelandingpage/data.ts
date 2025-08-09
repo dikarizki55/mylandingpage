@@ -369,7 +369,7 @@ export const data = [
       description:
         "Elevated by premium leather, these Air Max 90's stay true to their running roots with the iconic Waffle sole and textured accents for that classic 90's look. Finished with easy-to-style colors, the visible cushioning adds comfort to your journey.",
       image:
-        "/portfolio/nikelandingpage/nike air max/nike air max cream blue.png",
+        "/portfolio/nikelandingpage/nike air max/nike air max cream blue.webp",
       productColor: ["#BDB39F", "#1B252F"],
       sideNikeColor: "#ffffff",
       textColor: "#000000",
@@ -382,7 +382,7 @@ export const data = [
       description:
         "Elevated by premium leather, these Air Max 90's stay true to their running roots with the iconic Waffle sole and textured accents for that classic 90's look. Finished with easy-to-style colors, the visible cushioning adds comfort to your journey.",
       image:
-        "/portfolio/nikelandingpage/nike air max/nike air max black red.png",
+        "/portfolio/nikelandingpage/nike air max/nike air max black red.webp",
       productColor: ["#000000", "#EB0517"],
       sideNikeColor: "#ffffff",
       textColor: "#ffffff",
@@ -394,7 +394,7 @@ export const data = [
       price: "$145",
       description:
         "Elevated by premium leather, these Air Max 90's stay true to their running roots with the iconic Waffle sole and textured accents for that classic 90's look. Finished with easy-to-style colors, the visible cushioning adds comfort to your journey.",
-      image: "/portfolio/nikelandingpage/nike air max/nike air max green.png",
+      image: "/portfolio/nikelandingpage/nike air max/nike air max green.webp",
       productColor: ["#A08340", "#BECA5E"],
       sideNikeColor: "#ffffff",
       textColor: "#ffffff",
@@ -409,7 +409,7 @@ export const data = [
       description:
         "This special edition AJ1 adds a touch of heat to any look. Genuine leather gives them a premium feel. A subtle metallic shine on the collar and Swoosh logo makes 'em pop. Are you ready to fire up your look?",
       image:
-        "/portfolio/nikelandingpage/air jordan/air jordan low se white blue.png",
+        "/portfolio/nikelandingpage/air jordan/air jordan low se white blue.webp",
       productColor: ["#EAE9EC", "#96B9CF"],
       sideNikeColor: "#000000",
       textColor: "#000000",
@@ -422,7 +422,7 @@ export const data = [
       description:
         "This special edition AJ1 adds a touch of heat to any look. Genuine leather gives them a premium feel. A subtle metallic shine on the collar and Swoosh logo makes 'em pop. Are you ready to fire up your look?",
       image:
-        "/portfolio/nikelandingpage/air jordan/air jordan low se white pink.png",
+        "/portfolio/nikelandingpage/air jordan/air jordan low se white pink.webp",
       productColor: ["#EAE9EC", "#EE868C"],
       sideNikeColor: "#000000",
       textColor: "#000000",
@@ -435,7 +435,7 @@ export const data = [
       description:
         "This special edition AJ1 adds a touch of heat to any look. Genuine leather gives them a premium feel. A subtle metallic shine on the collar and Swoosh logo makes 'em pop. Are you ready to fire up your look?",
       image:
-        "/portfolio/nikelandingpage/air jordan/air jordan low se white red.png",
+        "/portfolio/nikelandingpage/air jordan/air jordan low se white red.webp",
       productColor: ["#EAE9EC", "#851F2B"],
       sideNikeColor: "#ffffff",
       textColor: "#000000",
@@ -449,7 +449,7 @@ export const data = [
       price: "$120",
       description:
         "With springy ReactX foam, the Vomero 18 gives you a comfortable, responsive ride for your daily runs. Lightweight textiles up top help your feet breathe, so you stay cool no matter how many miles you log.",
-      image: "/portfolio/nikelandingpage/nike vomero/nike vomero 18 red.png",
+      image: "/portfolio/nikelandingpage/nike vomero/nike vomero 18 red.webp",
       productColor: ["#0B090C", "#BA1212"],
       sideNikeColor: "#FFFFFF",
       textColor: "#FFFFFF",
@@ -461,7 +461,7 @@ export const data = [
       price: "$120",
       description:
         "With springy ReactX foam, the Vomero 18 gives you a comfortable, responsive ride for your daily runs. Lightweight textiles up top help your feet breathe, so you stay cool no matter how many miles you log.",
-      image: "/portfolio/nikelandingpage/nike vomero/nike vomero 18 green.png",
+      image: "/portfolio/nikelandingpage/nike vomero/nike vomero 18 green.webp",
       productColor: ["#F3F9F5", "#2F9800"],
       sideNikeColor: "#000000",
       textColor: "#000000",
@@ -473,7 +473,7 @@ export const data = [
       price: "$120",
       description:
         "With springy ReactX foam, the Vomero 18 gives you a comfortable, responsive ride for your daily runs. Lightweight textiles up top help your feet breathe, so you stay cool no matter how many miles you log.",
-      image: "/portfolio/nikelandingpage/nike vomero/nike vomero 18 blue.png",
+      image: "/portfolio/nikelandingpage/nike vomero/nike vomero 18 blue.webp",
       productColor: ["#E6E9F0", "#50A9A7"],
       sideNikeColor: "#000000",
       textColor: "#000000",
