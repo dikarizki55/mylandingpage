@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { category, data } from "./data";
-import IconNikeLogo, { IconNikeWatermark, IconSearch } from "./Icon";
 import Image from "next/image";
 import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObserver";
 import { CSSProperties, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { darkenHex } from "@/lib/darkenHex";
+import IconNikeLogo, { IconNikeWatermark, IconSearch } from "./IconNike";
 
 export default function Page() {
   const { elementRef, visibleId } = useSingleIntersectionObserver(0.4);
