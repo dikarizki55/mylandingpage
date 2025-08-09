@@ -6,6 +6,10 @@
   --font-inter: "Inter", sans-serif;
 }
 
+@theme {
+  --breakpoint-mac: 90rem;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

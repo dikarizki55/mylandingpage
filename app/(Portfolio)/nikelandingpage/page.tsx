@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObserver";
 import { CSSProperties, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { darkenHex } from "@/lib/darkenHex";
 
 export default function Page() {
   const { elementRef, visibleId } = useSingleIntersectionObserver(0.4);
@@ -38,9 +39,8 @@ export default function Page() {
         style={{
           backgroundColor:
             data[pageState.page][pageState.color].productColor[1],
-          width: 200,
         }}
-        className={`fixed z-10 h-screen overflow-hidden transition-all duration-500`}
+        className={`fixed w-30 mac:w-50 z-10 h-screen overflow-hidden transition-all duration-500`}
       >
         <IconNikeWatermark
           style={{
@@ -50,10 +50,11 @@ export default function Page() {
             height: 2129 * 0.9,
             transition: "all ease 0.5s",
           }}
+          className=" origin-top-left scale-70 mac:scale-100"
         ></IconNikeWatermark>
         <div className=" flex w-full h-screen"></div>
       </div>
-      <nav className=" flex px-22 mt-5 items-center justify-between fixed z-10 left-[200px] w-[calc(100vw-200px)]">
+      <nav className=" flex mt-5 items-center justify-center gap-30 fixed z-10 w-full pl-50">
         <IconNikeLogo
           style={{ color: data[pageState.page][pageState.color].textColor }}
           className=" w-[65px] 2xl:w-[77px]"
@@ -83,19 +84,25 @@ export default function Page() {
                     exit={{ opacity: 0 }}
                     transition={{ ease: "easeInOut", duration: 0.5 }}
                     style={{
-                      backgroundColor: `${
-                        data[pageState.page][pageState.color].productColor[1]
-                      }a0`,
+                      backgroundColor: `${darkenHex(
+                        data[pageState.page][pageState.color].productColor[1],
+                        -0.5
+                      )}a0`,
                     }}
-                    className=" absolute -translate-x-[40%] rounded-[40px] px-20 py-15 backdrop-blur-xl flex justify-start items-start gap-7 z-1000"
+                    className=" absolute -translate-x-[50%] rounded-[40px] px-20 py-15 backdrop-blur-xl flex justify-center items-start gap-7 z-1000"
                   >
                     {categoryItem.datalist.map((list, j) => (
-                      <div key={j} className=" flex flex-col gap-1">
-                        <h1 className=" font-medium text-xl">{list.title}</h1>
+                      <div key={j} className="flex flex-col w-full">
+                        <h1 className=" font-medium text-xl inline whitespace-nowrap">
+                          {list.title}
+                        </h1>
                         {list.list.map((item, k) => (
-                          <span key={k} className=" font-extralight text-sm">
+                          <p
+                            key={k}
+                            className=" font-extralight text-sm whitespace-nowrap"
+                          >
                             {item}
-                          </span>
+                          </p>
                         ))}
                       </div>
                     ))}
@@ -154,7 +161,7 @@ export default function Page() {
         style={{
           color: data[pageState.page][pageState.color].textColor,
         }}
-        className=" absolute left-60 top-25 font-roboto-condensed italic transition-all duration-1000"
+        className=" absolute left-40 mac:left-60 top-25 2xl:left-65 2xl:top-45 font-roboto-condensed italic transition-all duration-1000"
       >
         <motion.h1
           key={`title${pageState.page}`}
@@ -162,7 +169,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className=" relative font-black text-[200px]"
+          className=" relative font-black text-[180px] mac:text-[200px] 2xl:text-[220px]"
         >
           {data[pageState.page][pageState.color].title}
         </motion.h1>
@@ -172,7 +179,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
-          className=" relative font-medium text-[38px] -mt-16 tracking-[10px]"
+          className=" relative font-medium text-[32px] mac:text-[38px] 2xl:text-[45px] -mt-16 tracking-[10px]"
         >
           {data[pageState.page][pageState.color].name}
         </motion.h2>
@@ -182,7 +189,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
-          className=" relative font-black text-[50px]"
+          className=" relative font-black text-[40px] mac:text-[50px] 2xl:text-[60px]"
         >
           {data[pageState.page][pageState.color].price}
         </motion.h2>
@@ -192,7 +199,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ delay: 0.3, duration: 0.45, ease: "easeOut" }}
-          className=" relative mt-5 font-light text-[24px] not-italic w-140"
+          className=" relative mt-5 font-light text-[20px] mac:text-[24px] 2xl:text-[30px] not-italic w-105 mac:w-140 2xl:w-163"
         >
           {data[pageState.page][pageState.color].description}
         </motion.p>
@@ -251,13 +258,13 @@ export default function Page() {
         <section
           key={i}
           id={`page${i}`}
-          className=" w-full h-screen pl-[200px] snap-start relative"
+          className=" w-full h-screen snap-start relative"
         >
           <div className="flex w-full h-screen scroll-smooth snap-x snap-mandatory overflow-x-scroll overflow-y-clip">
             {dataItems.map((Items, j) => (
               <section
                 id={`${i}-${j}`}
-                className="relative w-[calc(100vw-200px)] h-screen flex-none snap-start"
+                className="relative pl-30 mac:pl-50 w-full h-screen flex-none snap-start"
                 key={j}
               >
                 <motion.div
@@ -268,7 +275,7 @@ export default function Page() {
                     duration: 0.4,
                   }}
                   viewport={{ once: true }}
-                  className="absolute right-5 bottom-0 -mb-10 2xl:left-[600px] 2xl:top-0 2xl:mt-[-220px]"
+                  className="absolute right-5 bottom-0 -mb-10 2xl:right-20 2xl:bottom-0 2xl:-mb-20"
                 >
                   <Image
                     id={`image-${i}-${j}`}
@@ -296,7 +303,7 @@ export default function Page() {
                     width={963}
                     height={79}
                     alt="shadow"
-                    className=" absolute right-0 -mr-3 bottom-18 w-[650px] 2xl:ml-[730px] 2xl:mt-[800px] 2xl:w-[963px]"
+                    className=" absolute right-0 -mr-3  bottom-18 w-[650px] 2xl:mb-0 2xl:w-[1000px]"
                   ></Image>
                 </motion.div>
               </section>
@@ -304,6 +311,22 @@ export default function Page() {
           </div>
         </section>
       ))}
+
+      <div className=" fixed top-0 right-5 h-screen flex flex-col justify-center items-center gap-5">
+        {data.map((_, i) => (
+          <Link key={i} href={`#${i}-0`}>
+            <div
+              style={{
+                backgroundColor:
+                  data[pageState.page][pageState.color].textColor,
+                height: i === pageState.page ? "100px" : "6px",
+                opacity: 0.5,
+              }}
+              className="relative w-1.5 rounded-[3px] transition-all duration-500 ease-out"
+            ></div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
