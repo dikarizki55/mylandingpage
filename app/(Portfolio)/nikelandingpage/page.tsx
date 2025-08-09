@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { category, data } from "./data";
-import { IconNikeLogo, IconNikeWatermark, IconSearch } from "./icon";
+import IconNikeLogo, { IconNikeWatermark, IconSearch } from "./icon";
 import Image from "next/image";
 import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObserver";
 import { CSSProperties, useEffect, useState } from "react";

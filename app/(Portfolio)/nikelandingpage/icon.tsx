@@ -227,7 +227,9 @@ export function IconNikeWatermark({
     </svg>
   );
 }
-export function IconNikeLogo({ ...rest }: React.HTMLAttributes<SVGElement>) {
+export default function IconNikeLogo({
+  ...rest
+}: React.HTMLAttributes<SVGElement>) {
   return (
     <svg
       viewBox="0 0 17 17"
