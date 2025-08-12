@@ -78,6 +78,26 @@ const pageProps = {
           ),
           link: "https://moneyjournal-git-main-dika-rizkis-projects.vercel.app/",
         },
+        {
+          src: "/portfolio/nikeLandingPage.webp",
+          title: "Nike Landing Page",
+          description: (
+            <span>
+              Nike Landing Page is a modern and interactive single-page website
+              I built to explore advanced frontend animation techniques using
+              Framer Motion. Designed for a smooth and engaging user experience,
+              the page features animated sections, scroll-triggered effects, and
+              dynamic UI transitions that bring the brand&apos;s visual energy
+              to life.
+              <br /> <br />
+              Developed with Next.js (App Router) and Tailwind CSS, the project
+              focuses entirely on frontend interaction and design polish,
+              without backend integration. All animations are handcrafted to
+              ensure fluid motion and responsive performance across devices.
+            </span>
+          ),
+          link: "/nikelandingpage",
+        },
       ],
     },
     artist: {
