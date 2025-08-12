@@ -44,9 +44,19 @@ export const metadata: Metadata = {
     // images: ["https://yourdomain.com/twitter-thumbnail.jpg"],
   },
   metadataBase: new URL(mymetadata.url),
-  icons: {
-    icon: "/portfolio/nikelandingpage/icon.svg",
-  },
+  icons: [
+    {
+      url: "/portfolio/nikelandingpage/iconLight.png",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      url: "/portfolio/nikelandingpage/iconDark.png",
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
+  // {
+  //   icon: "/portfolio/nikelandingpage/icon.svg",
+  // },
 };
 
 export default function RootLayout({

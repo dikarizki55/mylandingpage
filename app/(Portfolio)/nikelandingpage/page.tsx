@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useSingleIntersectionObserver } from "@/hooks/useSingleIntersectionObserver";
 import { CSSProperties, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { darkenHex } from "@/lib/darkenHex";
 import IconNikeLogo, { IconNikeWatermark, IconSearch } from "./IconNike";
+import SearchMobile, { MenuMobile } from "./MobileUi";
 
 export default function Page() {
   const { elementRef, visibleId } = useSingleIntersectionObserver(0.4);
@@ -33,14 +33,14 @@ export default function Page() {
       style={{
         backgroundColor: data[pageState.page][pageState.color].productColor[0],
       }}
-      className=" snap-y snap-mandatory overflow-y-scroll scroll-smooth h-screen transition-all duration-500"
+      className=" snap-y snap-mandatory overflow-y-scroll scroll-smooth h-[100dvh] transition-all duration-500"
     >
       <div
         style={{
           backgroundColor:
             data[pageState.page][pageState.color].productColor[1],
         }}
-        className={`fixed w-30 mac:w-50 z-10 h-screen overflow-hidden transition-all duration-500`}
+        className={` fixed w-full lg:w-30 mac:w-50 bottom-0 left-0 lg:top-0 z-10 h-3 lg:h-screen overflow-hidden transition-all duration-500`}
       >
         <IconNikeWatermark
           style={{
@@ -52,16 +52,26 @@ export default function Page() {
           }}
           className=" origin-top-left scale-70 mac:scale-100"
         ></IconNikeWatermark>
-        <div className=" flex w-full h-screen"></div>
+        <div className=" flex w-full h-[100dvh]"></div>
       </div>
-      <nav className=" flex mt-5 items-center justify-center gap-30 fixed z-10 w-full pl-50">
-        <IconNikeLogo
-          style={{ color: data[pageState.page][pageState.color].textColor }}
-          className=" w-[65px] 2xl:w-[77px]"
-        ></IconNikeLogo>
+      <nav
+        style={
+          {
+            "--bg-color": data[pageState.page][pageState.color].productColor[1],
+            "--text-color-m":
+              data[pageState.page][pageState.color].sideNikeColor,
+            "--text-color": data[pageState.page][pageState.color].textColor,
+          } as React.CSSProperties
+        }
+        className={
+          " h-12 lg:h-auto flex lg:mt-5 items-center justify-between px-5 lg:justify-center gap-30 fixed z-20 w-full lg:pl-50 text-[var(--text-color-m)] lg:text-[var(--text-color)] bg-[var(--bg-color)] lg:bg-[#00000000] transition-all duration-500"
+        }
+      >
+        <IconNikeLogo className=" w-[37px] lg:w-[65px] 2xl:w-[77px]"></IconNikeLogo>
         <div
           onMouseLeave={() => setHoverState("")}
-          className=" flex gap-10 2xl:gap-19 uppercase"
+          style={{ color: data[pageState.page][pageState.color].textColor }}
+          className=" lg:flex gap-10 2xl:gap-19 uppercase hidden"
         >
           {category.map((categoryItem, i) => (
             <div key={i}>
@@ -69,9 +79,6 @@ export default function Page() {
                 className="font-roboto-condensed 2xl:text-2xl text-[22px]"
                 href={"#"}
                 onMouseEnter={() => setHoverState(categoryItem.title)}
-                style={{
-                  color: data[pageState.page][pageState.color].textColor,
-                }}
               >
                 {categoryItem.title}
               </Link>
@@ -84,10 +91,11 @@ export default function Page() {
                     exit={{ opacity: 0 }}
                     transition={{ ease: "easeInOut", duration: 0.5 }}
                     style={{
-                      backgroundColor: `${darkenHex(
-                        data[pageState.page][pageState.color].productColor[1],
-                        -0.5
-                      )}a0`,
+                      backgroundColor: `${
+                        data[pageState.page][pageState.color].productColor[1]
+                      }a0`,
+                      color:
+                        data[pageState.page][pageState.color].sideNikeColor,
                     }}
                     className=" absolute -translate-x-[50%] rounded-[40px] px-20 py-15 backdrop-blur-xl flex justify-center items-start gap-7 z-1000"
                   >
@@ -112,13 +120,17 @@ export default function Page() {
             </div>
           ))}
         </div>
+        <div className="lg:hidden flex gap-7">
+          <SearchMobile pageState={pageState} />
+          <MenuMobile pageState={pageState} />
+        </div>
         <search
           style={{
             backgroundColor: `${
               data[pageState.page][pageState.color].searchBarColor[0]
             }26`,
           }}
-          className="2xl:px-5 2xl:py-2 px-4 py-1 rounded-full flex justify-start items-center gap-3"
+          className="  hidden 2xl:px-5 2xl:py-2 px-4 py-1 rounded-full lg:flex justify-start items-center gap-3"
         >
           <IconSearch
             style={{
@@ -142,13 +154,13 @@ export default function Page() {
                   }80`,
                 } as CSSProperties
               }
-              className="focus:outline-none focus:border-none border-none font-roboto-condensed text-[20px] 2xl:text-[26px] w-30"
+              className="focus:outline-none focus:border-none border-none font-roboto-condensed text-base lg:text-[20px] 2xl:text-[26px] w-30"
             />
           </form>
         </search>
       </nav>
 
-      <div className=" absolute bottom-0 right-0">
+      <div className=" hidden lg:block absolute bottom-0 right-0">
         <Image
           alt="lighting"
           width={1720}
@@ -161,7 +173,7 @@ export default function Page() {
         style={{
           color: data[pageState.page][pageState.color].textColor,
         }}
-        className=" absolute left-40 mac:left-60 top-25 2xl:left-65 2xl:top-45 font-roboto-condensed italic transition-all duration-1000"
+        className=" absolute w-full h-[50dvh] bottom-0 lg:w-auto px-6 lg:px-0 lg:left-40 mac:left-60 2xl:left-65 lg:h-[100dvh] lg:flex lg:flex-col lg:justify-center lg:pt-8 font-roboto-condensed italic transition-all duration-1000"
       >
         <motion.h1
           key={`title${pageState.page}`}
@@ -169,7 +181,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className=" relative font-black text-[180px] mac:text-[200px] 2xl:text-[220px]"
+          className=" relative leading-15 lg:leading-normal font-black text-[60px] lg:text-[180px] mac:text-[200px] 2xl:text-[220px]"
         >
           {data[pageState.page][pageState.color].title}
         </motion.h1>
@@ -179,7 +191,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
-          className=" relative font-medium text-[32px] mac:text-[38px] 2xl:text-[45px] -mt-16 tracking-[10px]"
+          className=" relative font-medium leading-8 lg:leading-normal text-[28px] lg:text-[32px] mac:text-[38px] 2xl:text-[45px] lg:-mt-16 lg:*:tracking-[10px]"
         >
           {data[pageState.page][pageState.color].name}
         </motion.h2>
@@ -189,7 +201,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
-          className=" relative font-black text-[40px] mac:text-[50px] 2xl:text-[60px]"
+          className=" relative lg:mt-0 font-black text-[28px] lg:text-[40px] mac:text-[50px] 2xl:text-[60px]"
         >
           {data[pageState.page][pageState.color].price}
         </motion.h2>
@@ -199,7 +211,7 @@ export default function Page() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
           transition={{ delay: 0.3, duration: 0.45, ease: "easeOut" }}
-          className=" relative mt-5 font-light text-[20px] mac:text-[24px] 2xl:text-[30px] not-italic w-105 mac:w-140 2xl:w-163"
+          className=" relative lg:mt-5 font-light text-[16px] lg:text-[20px] mac:text-[24px] 2xl:text-[30px] not-italic w-full lg:w-105 mac:w-140 2xl:w-[35vw]"
         >
           {data[pageState.page][pageState.color].description}
         </motion.p>
@@ -207,17 +219,17 @@ export default function Page() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className=" flex gap-5 mt-12 relative z-10"
+          className=" flex gap-3 lg:gap-5 mt-3 lg:mt-12 relative z-10"
         >
           {data[pageState.page].map((color, i) => (
             <div
               key={i}
-              className=" relative w-9 h-9 flex justify-center items-center"
+              className=" relative w-8 h-8 lg:w-9 lg:h-9 flex justify-center items-center"
             >
               {isActive(i) && (
                 <motion.div
                   layoutId="activeTabBackground"
-                  className="absolute w-9 h-9 border rounded-full"
+                  className="absolute w-8 h-8 lg:w-9 lg:h-9 border rounded-full"
                   transition={{
                     duration: 0.5,
                     ease: "easeInOut",
@@ -237,7 +249,7 @@ export default function Page() {
                         data[pageState.page][pageState.color].textColor
                       }80`,
                     }}
-                    className=" w-6 h-6 outline-[2px] flex rounded-full overflow-clip"
+                    className=" w-5 h-5 lg:w-6 lg:h-6 outline-[2px] flex rounded-full overflow-clip"
                   >
                     {color.productColor.map((colorDetail, i) => (
                       <div
@@ -258,24 +270,24 @@ export default function Page() {
         <section
           key={i}
           id={`page${i}`}
-          className=" w-full h-screen snap-start relative"
+          className=" w-full h-[100dvh] snap-start relative"
         >
-          <div className="flex w-full h-screen scroll-smooth snap-x snap-mandatory overflow-x-scroll overflow-y-clip">
+          <div className="flex w-full h-[100dvh] scroll-smooth snap-x snap-mandatory overflow-x-scroll overflow-y-clip scrollbar-hide">
             {dataItems.map((Items, j) => (
               <section
                 id={`${i}-${j}`}
-                className="relative pl-30 mac:pl-50 w-full h-screen flex-none snap-start"
+                className="relative lg:pl-30 mac:pl-50 w-full h-[100dvh] flex-none snap-start lg:flex lg:justify-end lg:px-10 lg:items-center"
                 key={j}
               >
                 <motion.div
-                  initial={{ x: 400, y: 100, opacity: 0, scale: 0.5 }}
+                  initial={{ x: 200, y: 200, opacity: 0, scale: 0.5 }}
                   whileInView={{ x: 0, y: 0, opacity: 1, scale: 1 }}
                   transition={{
                     ease: "easeOut",
                     duration: 0.4,
                   }}
                   viewport={{ once: true }}
-                  className="absolute right-5 bottom-0 -mb-10 2xl:right-20 2xl:bottom-0 2xl:-mb-20"
+                  className="relative h-[50dvh] flex items-center justify-center lg:block lg:h-auto lg:-mt-20 z-10"
                 >
                   <Image
                     id={`image-${i}-${j}`}
@@ -286,7 +298,7 @@ export default function Page() {
                     width={1048}
                     height={1310}
                     alt="shoes"
-                    className="  -rotate-[16.62deg]  2xl:w-[1048px] 2xl:h-[1310px] xl:w-[700px]"
+                    className=" -ml-10 lg:ml-0  -rotate-[16.62deg] w-[360px] 2xl:w-[900px] xl:w-[700px]"
                   ></Image>
                 </motion.div>
                 <motion.div
@@ -297,13 +309,14 @@ export default function Page() {
                     duration: 2,
                   }}
                   viewport={{ once: true }}
+                  className=" absolute top-0 flex items-center justify-center h-[50dvh] w-full lg:w-auto lg:h-auto lg:block lg:-mr-3 lg:top-auto lg:mt-120 2xl:mt-170 lg:left-auto"
                 >
                   <Image
                     src={"/portfolio/nikelandingpage/shadow.png"}
                     width={963}
                     height={79}
                     alt="shadow"
-                    className=" absolute right-0 -mr-3  bottom-18 w-[650px] 2xl:mb-0 2xl:w-[1000px]"
+                    className=" mt-70 ml-13 lg:ml-auto lg:mt-auto w-[370px] lg:w-[650px] 2xl:w-[800px]"
                   ></Image>
                 </motion.div>
               </section>
@@ -312,7 +325,7 @@ export default function Page() {
         </section>
       ))}
 
-      <div className=" fixed top-0 right-5 h-screen flex flex-col justify-center items-center gap-5">
+      <div className=" fixed top-0 right-2 lg:right-5 h-[100dvh] flex flex-col justify-center items-center gap-5">
         {data.map((_, i) => (
           <Link key={i} href={`#${i}-0`}>
             <div

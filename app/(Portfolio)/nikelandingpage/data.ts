@@ -396,7 +396,7 @@ export const data = [
         "Elevated by premium leather, these Air Max 90's stay true to their running roots with the iconic Waffle sole and textured accents for that classic 90's look. Finished with easy-to-style colors, the visible cushioning adds comfort to your journey.",
       image: "/portfolio/nikelandingpage/nike air max/nike air max green.webp",
       productColor: ["#A08340", "#BECA5E"],
-      sideNikeColor: "#ffffff",
+      sideNikeColor: "#000000",
       textColor: "#ffffff",
       searchBarColor: ["#ffffff", "#ffffff"],
     },
