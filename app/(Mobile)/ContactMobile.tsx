@@ -79,6 +79,25 @@ const ContactMobile = () => {
             </a>
           </div>
         </div>
+        <div className=" flex gap-5 mt-3 items-center">
+          <div className=" w-[23px] h-[19px] flex justify-center items-center">
+            <Image
+              src={"/landingpage/github.png"}
+              alt="linkedin"
+              width={19}
+              height={19}
+              className=" object-contain"
+            ></Image>
+          </div>
+          <div>
+            <a
+              href="https://github.com/dikarizki55"
+              className=" text-white text-sm"
+            >
+              github.com/dikarizki55
+            </a>
+          </div>
+        </div>
       </div>
 
       <form

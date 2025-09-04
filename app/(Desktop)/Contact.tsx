@@ -68,17 +68,37 @@ const Contact = () => {
             </span>
           </div>
           <div className=" flex gap-3">
-            <img
+            <Image
               src={"/landingpage/linkedin.png"}
               alt="linkedin"
-              className=" w-[23px] h-[20px]"
-            ></img>
+              width={23}
+              height={20}
+            ></Image>
             <Link
               className=" font-medium text-base"
               href={"https://www.linkedin.com/in/dika-rizki-7051061b0/"}
             >
               Dika Rizki
             </Link>
+          </div>
+          <div className=" flex gap-3 items-center">
+            <div className=" w-[23px] h-[19px] flex justify-center items-center">
+              <Image
+                src={"/landingpage/github.png"}
+                alt="linkedin"
+                width={23}
+                height={23}
+                className=" object-contain"
+              ></Image>
+            </div>
+            <div>
+              <Link
+                href="https://github.com/dikarizki55"
+                className=" font-medium text-base"
+              >
+                github.com/dikarizki55
+              </Link>
+            </div>
           </div>
         </div>
       </div>

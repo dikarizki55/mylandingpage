@@ -61,6 +61,53 @@ const pageProps = {
       title: "Fullstack Developer",
       items: [
         {
+          src: "/portfolio/cafepos.webp",
+          title: "CafePos",
+          description: (
+            <span>
+              From Design to Deployment: My CafePOS Project Over the past few
+              weeks, I challenged myself to build a complete web application to
+              sharpen my fullstack development skills. The result is CafePOS, a
+              simple point-of-sale web app built with Next.js. I started from
+              scratch, designing the UI in Figma, then bringing it to life with
+              modern web technologies. It was a valuable journey — not only
+              improving my coding skills, but also helping me understand how
+              design and development connect in real-world projects. This
+              application is optimized for mobile devices, as its features are
+              designed to be used directly at the café table.
+              <br />
+              <br />
+              <a
+                className=" underline text-white"
+                href="https://github.com/dikarizki55/cafepos"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Feature
+              </a>
+              <br />
+              <a
+                className=" underline text-white"
+                href="https://github.com/dikarizki55/cafepos"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </a>
+              <br />
+              <a
+                className=" underline text-white"
+                href="https://cafepos-git-main-dika-rizkis-projects.vercel.app/admin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Dashboard Page
+              </a>
+            </span>
+          ),
+          link: "https://cafepos-git-main-dika-rizkis-projects.vercel.app/?table=2",
+        },
+        {
           src: "/portfolio/moneyjournal3.jpg",
           title: "Money Journal",
           description: (
