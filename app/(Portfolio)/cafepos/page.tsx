@@ -1,86 +1,92 @@
 "use client";
-
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const videoData = [
   {
-    src: "/portfolio/cafepos/scanqr.webm",
+    src: "/portfolio/cafepos/scanqr.mp4",
   },
   {
-    src: "/portfolio/cafepos/filterfunction.webm",
+    src: "/portfolio/cafepos/filterfunction.mp4",
   },
   {
-    src: "/portfolio/cafepos/createorder.webm",
+    src: "/portfolio/cafepos/createorder.mp4",
   },
   {
-    src: "/portfolio/cafepos/animatedreceipt.webm",
+    src: "/portfolio/cafepos/animatedreceipt.mp4",
   },
   {
-    src: "/portfolio/cafepos/dashboard.webm",
+    src: "/portfolio/cafepos/dashboard.mp4",
   },
   {
-    src: "/portfolio/cafepos/dashboardchangestatus.webm",
+    src: "/portfolio/cafepos/dashboardchangestatus.mp4",
   },
   {
-    src: "/portfolio/cafepos/dashboardcreateorder.webm",
+    src: "/portfolio/cafepos/dashboardcreateorder.mp4",
   },
   {
-    src: "/portfolio/cafepos/dashboardcreatemenu.webm",
+    src: "/portfolio/cafepos/dashboardcreatemenu.mp4",
   },
-];
+] as const;
 
 export default function Cafepos() {
-  const videoRef = useRef<(HTMLVideoElement | null)[]>([]);
+  const containerRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [indexii, setIndexii] = useState(0);
 
   useEffect(() => {
-    const currentVideo = videoRef.current;
+    const container = containerRef.current;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const target = entry.target as HTMLVideoElement;
-
           if (entry.isIntersecting) {
-            target.currentTime = 0;
-            target.play();
-          } else {
-            target.pause();
-            target.currentTime = 0;
+            const vidIndex = containerRef.current?.findIndex(
+              (v) => v === entry.target
+            );
+            if (vidIndex !== -1 && vidIndex !== undefined) {
+              setIndexii(vidIndex);
+            }
           }
         });
       },
       { threshold: 0.5 }
     );
 
-    currentVideo.forEach((current) => {
-      if (current) observer.observe(current);
+    container?.forEach((item) => {
+      if (item) observer.observe(item);
     });
 
     return () => {
-      currentVideo.forEach((current) => {
-        if (current) observer.unobserve(current);
+      container?.forEach((item) => {
+        if (item) observer.unobserve(item);
       });
     };
   }, []);
 
-  //   if (!mount) return null;
-
   return (
-    <div className="bg-[#F4F0E4] w-full h-[100dvh] overflow-y-scroll snap-y snap-proximity scroll-smooth">
+    <div className="bg-[#F4F0E4] w-full h-[100dvh] overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <div className=" fixed bottom-2 right-2 p-2 px-4 bg-white rounded-full">
+        Page {indexii + 1} of {videoData.length}
+      </div>
       {videoData.map((item, i) => (
         <div
           key={i}
           className=" w-full h-[100dvh] flex justify-center items-center snap-center"
         >
-          <div className=" w-[100vmin] h-[100vmin]">
-            <video
-              ref={(el) => {
-                videoRef.current[i] = el;
-              }}
-              src={item.src}
-              muted
-              playsInline
-            ></video>
+          <div
+            className=" w-[100vmin] h-[100vmin]"
+            ref={(el) => {
+              containerRef.current[i] = el;
+            }}
+          >
+            {i == indexii && (
+              <video
+                src={item.src}
+                autoPlay
+                muted
+                playsInline
+                preload="none"
+              ></video>
+            )}
           </div>
         </div>
       ))}
