@@ -79,7 +79,7 @@ const pageProps = {
               <br />
               <a
                 className=" underline text-white"
-                href="https://github.com/dikarizki55/cafepos"
+                href="/cafepos"
                 target="_blank"
                 rel="noopener noreferrer"
               >
