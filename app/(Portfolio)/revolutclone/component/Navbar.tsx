@@ -4,6 +4,20 @@ import { useState } from "react";
 import { navbar } from "../data";
 
 export default function Navbar() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className={` w-full absolute top-0`}
+    >
+      <NavbarContent white={true} />
+    </motion.div>
+  );
+}
+
+export function NavbarContent({ white = false }: { white?: boolean }) {
   const [navHover, setNavHover] = useState("");
 
   const handleHover = (value: string) => ({
@@ -14,15 +28,14 @@ export default function Navbar() {
   const isNavKey = (key: string): key is keyof typeof navbar => {
     return key in navbar;
   };
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className={`w-full  mb-[10vh] transition-all duration-800 absolute top-0 py-4 ${
-        navHover !== "" ? "bg-white text-black" : "text-white"
+    <div
+      className={`w-full transition-all duration-800 py-4 ${
+        navHover !== ""
+          ? "bg-white text-black"
+          : white
+          ? "text-white"
+          : "text-black"
       }`}
     >
       <div className=" m-auto w-[120vh] flex justify-between items-center">
@@ -43,10 +56,22 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="text-base font-medium cursor-pointer rounded-full px-6 py-2.5 hover:bg-black">
+          <div
+            className={`text-base font-medium cursor-pointer rounded-full px-6 py-2.5 ${
+              navHover === "" && white
+                ? "bg-black text-white hover:bg-neutral-800"
+                : " text-black hover:bg-white"
+            }`}
+          >
             Log in
           </div>
-          <div className="px-6 py-2.5 bg-white text-black text-base font-medium rounded-full hover:bg-neutral-300 cursor-pointer transition-all duration-500">
+          <div
+            className={`px-6 py-2.5 ${
+              navHover === "" && white
+                ? "bg-white text-black hover:bg-neutral-300"
+                : "bg-black text-white hover:bg-neutral-700"
+            } text-base font-medium rounded-full  cursor-pointer transition-all duration-500`}
+          >
             Sign up
           </div>
         </div>
@@ -87,6 +112,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }

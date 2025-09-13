@@ -1,3 +1,5 @@
+import { DataType } from "./component/Carousel";
+
 export const navbar = {
   Personal: [
     {
@@ -155,3 +157,65 @@ export const navbar = {
     },
   ],
 };
+
+export const cards: DataType = [
+  {
+    section: "Physical cards",
+    title: "ELEVATE YOUR SPEND",
+    description:
+      "Earn points on your purchase with one of your debit cards. Then redeem them for Airline Miles and more. RevPoints T&Cs apply.",
+    detail: "Some cards available on paid plans only. Fees may apply.",
+    action: "Start earning",
+    bgsrc: "/portfolio/revolutclone/carousel/physical-card.mp4",
+    video: true,
+  },
+  {
+    section: "Virtual cards",
+    title: "GO VIRTUAL",
+    description:
+      "Create and add virtual cards to Apple or Google Wallet to start paying right away.",
+    detail: "",
+    action: "Create a Card",
+    bgsrc: "/portfolio/revolutclone/carousel/virtual-card.mp4",
+    video: true,
+  },
+];
+
+export const saving: DataType = [
+  {
+    section: "Adventure",
+    title: "LIFE, MEET SAVINGS",
+    description:
+      "Grow your money with up to 4.5% AER/Gross (variable) interest rate on Savings, paid every day.",
+    detail:
+      "AER stands for Annual Equivalent Rate and illustrates what the interest rate would be if interest was paid and compounded once each year. Gross is the interest rate without tax deducted. The interest rate is variable and subject to your selected plan. T&Cs apply.",
+    action: "Explore Savings",
+    bgsrc: "/portfolio/revolutclone/carousel/adventure.webp",
+    video: false,
+    addedImg: "/portfolio/revolutclone/carousel/frame-saving-adventure.webp",
+  },
+  {
+    section: "Wedding",
+    title: "LIFE, MEET SAVINGS",
+    description:
+      "Grow your money with up to 4.5% AER/Gross (variable) interest rate on Savings, paid every day.",
+    detail:
+      "AER stands for Annual Equivalent Rate and illustrates what the interest rate would be if interest was paid and compounded once each year. Gross is the interest rate without tax deducted. The interest rate is variable and subject to your selected plan. T&Cs apply.",
+    action: "Explore Savings",
+    bgsrc: "/portfolio/revolutclone/carousel/wedding.webp",
+    video: false,
+    addedImg: "/portfolio/revolutclone/carousel/frame-saving-bigday.webp",
+  },
+  {
+    section: "Moving",
+    title: "LIFE, MEET SAVINGS",
+    description:
+      "Grow your money with up to 4.5% AER/Gross (variable) interest rate on Savings, paid every day.",
+    detail:
+      "AER stands for Annual Equivalent Rate and illustrates what the interest rate would be if interest was paid and compounded once each year. Gross is the interest rate without tax deducted. The interest rate is variable and subject to your selected plan. T&Cs apply.",
+    action: "Explore Savings",
+    bgsrc: "/portfolio/revolutclone/carousel/moving.webp",
+    video: false,
+    addedImg: "/portfolio/revolutclone/carousel/frame-saving-dreamhouse.webp",
+  },
+];

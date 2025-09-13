@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MyAnimate } from "./MyAnimate";
+import { NavbarContent } from "./Navbar";
 
 export default function SecondNavbar() {
   const [visible, setVisible] = useState(true);
@@ -35,16 +36,9 @@ export default function SecondNavbar() {
       initial="-translate-y-full"
       animate="translate-y-0"
       state={visible}
-      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-500 `}
+      className={`fixed top-0 w-full z-100 bg-white/85 transition-transform duration-500 backdrop-blur-lg border-b border-b-neutral-200 `}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 className="font-bold text-lg">Logo</h1>
-        <ul className="flex gap-6">
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
-      </div>
+      <NavbarContent />
     </MyAnimate>
   );
 }

@@ -6,6 +6,7 @@ import Navbar from "./component/Navbar";
 import Image from "next/image";
 import Carousel from "./component/Carousel";
 import SecondNavbar from "./component/SecondNavbar";
+import { cards, saving } from "./data";
 
 export default function RevolutClone() {
   const [isTop, setIsTop] = useState(true);
@@ -14,6 +15,7 @@ export default function RevolutClone() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
     const handleScroll = () => {
       setIsTop(window.scrollY < 8);
     };
@@ -82,13 +84,20 @@ export default function RevolutClone() {
             isTop ? "w-full h-full " : "w-[85vh] h-[70vh]"
           } transition-all duration-1000 absolute flex flex-col items-center justify-end gap-7`}
         >
-          <div
-            className={` w-screen h-[101vh] bg-no-repeat  bg-center bg-[url('/portfolio/revolutclone/image2.webp')] absolute ${
-              isTop
-                ? "bg-[length:auto_130%] -translate-x-1/2 "
-                : "bg-[length:auto_50%] -translate-x-[50%] translate-y-[30vh]"
-            } left-1/2 bottom-0 transition-all duration-1000 -z-10`}
-          ></div>
+          <motion.div
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1 }}
+            className=" absolute -z-10"
+          >
+            <div
+              className={` w-screen h-[101vh] bg-no-repeat  bg-center bg-[url('/portfolio/revolutclone/image2.webp')]  ${
+                isTop
+                  ? "bg-[length:auto_130%] -translate-x-1/2 "
+                  : "bg-[length:auto_50%] -translate-x-[50%] translate-y-[30vh]"
+              } left-1/2 bottom-0 transition-all duration-1000 absolute`}
+            ></div>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -156,7 +165,7 @@ export default function RevolutClone() {
       {open && (
         <>
           <SecondNavbar />
-          <div className=" w-full py-24 mt-24 flex justify-center items-center">
+          <div className=" w-full py-48 flex justify-center items-center">
             <div className="flex flex-col justify-start items-center gap-14">
               <div className="text-gray-600 text-3xl font-semibold">
                 Join 60+ million customers worldwide and 11+ million in the UK
@@ -220,7 +229,9 @@ export default function RevolutClone() {
               </div>
             </div>
           </div>
-          <Carousel />
+          <Carousel data={cards} />
+          <Carousel data={saving} />
+          <div className=" w-full h-[200vh]"></div>
         </>
       )}
     </div>
