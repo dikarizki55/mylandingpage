@@ -53,8 +53,10 @@ export function NavbarContent({ white = false }: { white?: boolean }) {
         <div className="flex items-center gap-2">
           <div
             className={`text-base font-medium cursor-pointer rounded-full px-6 py-2.5 ${
-              navHover && white
-                ? "bg-black text-white hover:bg-neutral-800"
+              white
+                ? navHover
+                  ? "text-black"
+                  : "text-white hover:bg-black"
                 : " text-black hover:bg-white"
             }`}
           >

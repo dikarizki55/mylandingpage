@@ -177,6 +177,7 @@ export default function Carousel({ data }: { data: DataType }) {
                       goNext();
                     }
                   }}
+                  playsInline
                   muted
                   autoPlay
                   className=" object-cover"
