@@ -97,7 +97,7 @@ export default function Home({ ...sharedProps }: PageProps) {
               alt="myphoto"
               fill
               sizes="max-width: 768px"
-              className="object-cover"
+              className=" object-cover"
             />
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function Home({ ...sharedProps }: PageProps) {
                   alt="fullstackabout"
                   fill
                   sizes="max-width: 768px"
-                  className="object-cover"
+                  className="object-cover object-left"
                 />
               </div>
               <div className=" text-white flex flex-col gap-12 w-[681]">

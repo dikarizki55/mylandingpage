@@ -6,7 +6,25 @@ import Navbar from "./component/Navbar";
 import Image from "next/image";
 import Carousel from "./component/Carousel";
 import SecondNavbar from "./component/SecondNavbar";
-import { cards, saving } from "./data";
+import {
+  cards,
+  comodities,
+  footerCard,
+  footerLink,
+  footerNav,
+  saving,
+  terms,
+} from "./data";
+import Content from "./component/Content";
+import Link, { LinkWhite } from "./component/ui/Link";
+import Cards from "./component/ui/Cards";
+import {
+  IconFacebook,
+  IconInstagram,
+  IconLinkedin,
+  IconTiktok,
+  IconX,
+} from "./component/ui/Icon";
 
 export default function RevolutClone() {
   const [isTop, setIsTop] = useState(true);
@@ -16,6 +34,7 @@ export default function RevolutClone() {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    document.body.style.overflow = "";
     const handleScroll = () => {
       setIsTop(window.scrollY < 8);
     };
@@ -42,9 +61,6 @@ export default function RevolutClone() {
 
   return (
     <div ref={scrollRef} className=" ">
-      {/* <div className=" fixed top-0 right-0 z-10">
-        {JSON.stringify(isTop) + y}
-      </div> */}
       <div
         className={`w-full h-[101vh] flex justify-center items-center relative overflow-hidden`}
       >
@@ -231,7 +247,191 @@ export default function RevolutClone() {
           </div>
           <Carousel data={cards} />
           <Carousel data={saving} />
-          <div className=" w-full h-[200vh]"></div>
+          <Content />
+          <Carousel data={comodities} />
+          <section className=" w-full text-black pt-15 pb-35 px-[15%] flex flex-col items-center">
+            <h1 className=" text-5xl font-extrabold uppercase text-center">
+              Join the 60+ million using Revolut
+            </h1>
+            <div className=" mt-8 px-5 py-2 bg-black font-medium text-white rounded-full">
+              Download the app
+            </div>
+            <p className=" mt-20 text-xs font-light leading-5 tracking-wide">
+              ¹FOR STOCK TRADING: Capital at risk.
+              <br /> <br />
+              Revolut Trading Ltd provides a non-advised execution-only service
+              in shares. Revolut Trading Ltd does not provide investment advice
+              or personal recommendations. You, as an individual investor, must
+              make your own decisions, seeking independent professional advice
+              if you are unsure as to the suitability or appropriateness of any
+              investment for your individual circumstances or needs.
+              <br /> <br />
+              The value of investments can go up as well as down and you may
+              receive less than your original investment or lose the value of
+              your entire initial investment. Past performance and forecasts are
+              not reliable indicators of future results. Currency rate
+              fluctuations can adversely impact the overall returns on your
+              original investment. Any trades outside of your monthly allowance
+              are charged at 0.25% of the order amount if you are a Standard,
+              Plus, Premium, or Metal customer, or at 0.12% of the order amount
+              if you are an Ultra/Trading Pro customer.{" "}
+              <Link>Read more on these fees.</Link> Further information about
+              the investment service provided by Revolut Trading Ltd can be
+              found in the <Link>Terms of Business</Link>,{" "}
+              <Link>Risk Disclosure</Link>, and <Link>Invest FAQs</Link>.
+              <br /> <br />
+              Revolut Trading Ltd (No. 11567840) is a firm authorised and
+              regulated by the Financial Conduct Authority (FRN: 933846). The
+              registered address of Revolut Trading Ltd is at 7 Westferry
+              Circus, Canary Wharf, London, England, E14 4HD.
+              <br /> <br />
+              ²FOR COMMODITIES: Capital at risk.
+              <br />
+              Revolut Ltd commodities service is not regulated by the FCA and it
+              is not protected or covered by the Financial Ombudsman Service, or
+              the Financial Services Compensation Scheme.
+              <br /> <br />
+              Revolut Ltd (No. 08804411) is also authorised by the FCA under the
+              Electronic Money Regulations 2011 (Firm Reference 900562).
+              Insurance related-products are arranged by Revolut Travel Ltd
+              which is authorised by the FCA to undertake insurance distribution
+              activities (FCA No: 780586) and by Revolut Ltd, an Appointed
+              Representative of Revolut Travel Ltd in relation to insurance
+              distribution activities.
+              <br /> <br />
+              If you would like to find out more about which Revolut entity you
+              receive services from, or if you have any other questions, please
+              reach out to us via the in-app chat in the Revolut app.
+            </p>
+          </section>
+          <section className=" text-white bg-[#1A1C1F] w-full py-20 px-[15%]">
+            <h3 className=" text-4xl font-medium">Choose your plan</h3>
+            <div className=" mt-15 flex flex-col gap-6">
+              <div className=" grid grid-cols-3 gap-6">
+                {footerCard.slice(0, 3).map((item) => (
+                  <Cards
+                    key={item.title}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    description={item.description}
+                  />
+                ))}
+              </div>
+              <div className=" grid grid-cols-2 gap-6">
+                {footerCard.slice(-2).map((item) => (
+                  <Cards
+                    key={item.title}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    description={item.description}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className=" mt-15 columns-[150px] gap-5 text-xs">
+              {footerNav.map((item) => (
+                <div
+                  className=" flex flex-col gap-4.5 mb-7 break-inside-avoid"
+                  key={item.title}
+                >
+                  <div className=" ">{item.title}</div>
+                  {item.submenu.map((sub) => (
+                    <div className=" text-[#8d969e]" key={sub}>
+                      {sub}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className=" text-[#8d969e] w-full flex justify-between items-center">
+              <div className=" text-white font-bold text-xl">YourBrand</div>
+              <div className=" flex gap-7 items-center">
+                <IconFacebook className="w-3.5" />
+                <IconInstagram className="w-3.5" />
+                <IconX className=" w-3.5" />
+                <IconLinkedin className="w-3.5" />
+                <IconTiktok className=" w-3.5" />
+              </div>
+            </div>
+            <hr className="text-[#8d969e] mt-3" />
+            <div className="text-[#8d969e] mt-10 text-xs">
+              <div className=" w-full flex gap-20 items-start justify-between">
+                <div className=" flex gap-2 items-center relative">
+                  <div className=" relative">
+                    <Image
+                      alt="uk flag"
+                      width={15}
+                      height={15}
+                      src={"/portfolio/revolutclone/GB.webp"}
+                    />
+                  </div>
+                  United Kingdom
+                </div>
+                <div className=" flex-1 flex flex-wrap gap-3">
+                  {terms.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </div>
+              <div className=" mt-15">© YourBrand Ltd 2025</div>
+              <p className=" mt-7 leading-relaxed tracking-wide">
+                To find out more about which Revolut entity you receive services
+                from, please check our corresponding{" "}
+                <LinkWhite>FAQ page</LinkWhite>. If you have any other
+                questions, please reach out to us via the in-app chat in the
+                Revolut app.
+                <br />
+                <br />
+                Revolut Ltd is registered in England and Wales (No. 08804411),
+                is authorised by the Financial Conduct Authority to offer
+                e-money and payment services under the Electronic Money
+                Regulations 2011 (FRN: 900562), and is registered with the
+                Financial Conduct Authority to offer cryptocurrency services
+                under the Money Laundering, Terrorist Financing and Transfer of
+                Funds (Information on the Payer) Regulations 2017. Commodities
+                services are provided by Revolut Ltd and are not regulated by
+                the Financial Conduct Authority.
+                <br />
+                <br />
+                Revolut Travel Ltd (No. 10618740) is authorised by the Financial
+                Conduct Authority to undertake insurance distribution activities
+                (FRN: 780586). Our insurance products are arranged by Revolut
+                Travel Ltd and Revolut Ltd, an appointed representative of
+                Revolut Travel Ltd.
+                <br />
+                <br />
+                Investment services are provided by Revolut Trading Ltd (No.
+                11567840), which is authorised and regulated by the Financial
+                Conduct Authority (FRN: 933846).
+                <br />
+                <br />
+                The registered address of Revolut Ltd, Revolut Travel Ltd, and
+                Revolut Trading Ltd is at 7 Westferry Circus, Canary Wharf,
+                London, England, E14 4HD. You can read more about our{" "}
+                <LinkWhite>terms and policies here.</LinkWhite>
+              </p>
+              <div className=" mt-15">
+                {footerLink.map((item) => (
+                  <p key={item.title} className=" mt-4 leading-relaxed">
+                    {item.title !== "" && (
+                      <>
+                        <LinkWhite className=" font-semibold">
+                          {item.title}
+                        </LinkWhite>
+                        {": "}
+                      </>
+                    )}
+                    {item.link.map((l, i) => (
+                      <span key={l} className=" font-light">
+                        {i !== 0 && " | "}
+                        <LinkWhite>{l}</LinkWhite>
+                      </span>
+                    ))}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </section>
         </>
       )}
     </div>

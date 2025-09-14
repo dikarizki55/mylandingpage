@@ -16,6 +16,7 @@ export type DataType = {
   detail: string;
   action: string;
   addedImg?: string;
+  addedImgVideo?: boolean;
   bgsrc: string;
   video: boolean;
 }[];
@@ -30,12 +31,13 @@ export default function Carousel({ data }: { data: DataType }) {
 
   const observerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const addedVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const imageDuration = 5;
 
   // Loop image
   useEffect(() => {
-    if (!data[indexShow].video && loop) {
+    if (!data[indexShow].video && !data[indexShow].addedImgVideo && loop) {
       setVideoDuration(imageDuration);
       const handler = setTimeout(() => {
         const nextIndex = (indexShow + 1) % data.length;
@@ -57,11 +59,18 @@ export default function Carousel({ data }: { data: DataType }) {
               if (videoRef.current && data[indexShow].video) {
                 videoRef.current.play();
               }
+              if (addedVideoRef.current && data[indexShow].addedImgVideo) {
+                addedVideoRef.current.play();
+              }
               setPlay(true);
             } else {
               if (videoRef.current && data[indexShow].video) {
                 videoRef.current.currentTime = 0;
                 videoRef.current.pause();
+              }
+              if (addedVideoRef.current && data[indexShow].addedImgVideo) {
+                addedVideoRef.current.currentTime = 0;
+                addedVideoRef.current.pause();
               }
               setLoop(true);
               setPlay(false);
@@ -98,7 +107,7 @@ export default function Carousel({ data }: { data: DataType }) {
       className=" w-full h-screen relative bg-black text-white flex justify-center items-center overflow-clip"
     >
       <AnimatePresence mode="wait">
-        <div className="w-[40%] h-[80vh] flex flex-col justify-between items-center relative z-1">
+        <div className="w-[50%] h-[85vh] flex flex-col justify-between items-center relative z-1">
           <motion.div
             key={data[indexShow].section + uid + "text"}
             initial={{ opacity: 0 }}
@@ -107,14 +116,19 @@ export default function Carousel({ data }: { data: DataType }) {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex flex-col  items-center gap-5"
           >
-            <div className="text-center  text-white text-5xl font-black ">
+            <div className="text-center  text-white text-5xl font-black uppercase ">
               {data[indexShow].title}
             </div>
             <div className="flex flex-col  items-center gap-8">
               <div className="flex flex-col  items-center gap-3">
-                <div className="text-center  text-white ">
-                  {data[indexShow].description}
-                </div>
+                <p className="text-center text-white">
+                  {data[indexShow].description.split("\n").map((item, i) => (
+                    <span key={i}>
+                      {item}
+                      <br />
+                    </span>
+                  ))}
+                </p>
                 <div className="text-center  text-white text-xs font-light ">
                   {data[indexShow].detail}
                 </div>
@@ -137,14 +151,37 @@ export default function Carousel({ data }: { data: DataType }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className=" w-full h-[40vh] relative"
+              className=" w-full h-[40vh] relative flex justify-center items-center"
             >
-              <Image
-                alt={data[indexShow].section + uid + "addedImage"}
-                src={data[indexShow].addedImg}
-                fill
-                className=" object-cover"
-              />
+              {!data[indexShow].addedImgVideo && (
+                <Image
+                  alt={data[indexShow].section + uid + "addedImage"}
+                  src={data[indexShow].addedImg}
+                  fill
+                  className=" w-full h-full"
+                />
+              )}
+
+              {data[indexShow].addedImgVideo && (
+                <video
+                  ref={(el) => {
+                    addedVideoRef.current = el;
+                  }}
+                  src={data[indexShow].addedImg}
+                  onLoadedMetadata={(el) => {
+                    if (!data[indexShow].video)
+                      setVideoDuration(el.currentTarget.duration);
+                  }}
+                  onEnded={() => {
+                    if (loop) {
+                      goNext();
+                    }
+                  }}
+                  muted
+                  autoPlay
+                  className=" object-cover"
+                />
+              )}
             </motion.div>
           )}
           <div className="size- inline-flex  items-center gap-4">
@@ -212,7 +249,7 @@ export default function Carousel({ data }: { data: DataType }) {
               ></video>
             )}
 
-            {!data[indexShow].video && (
+            {!data[indexShow].video && data[indexShow].bgsrc !== "" && (
               <Image
                 alt={data[indexShow].section}
                 src={data[indexShow].bgsrc}

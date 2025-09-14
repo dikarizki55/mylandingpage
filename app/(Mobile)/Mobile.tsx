@@ -97,7 +97,7 @@ const Page = ({ ...sharedProps }: PageProps) => {
               alt="fullstack"
               fill
               sizes="max-height: 380px"
-              className=" object-cover"
+              className=" object-cover object-left"
             ></Image>
           </div>
           <div className=" relative text-white w-[320px]">

@@ -32,7 +32,7 @@ const pageProps = {
           the gap between frontend experience and backend performance.
         </>
       ),
-      image: "/portfolio/moneyjournal3.jpg",
+      image: "/portfolio/cafepos.webp",
     },
     artist: {
       title: "3d Artist",
@@ -60,6 +60,21 @@ const pageProps = {
     fullstack: {
       title: "Fullstack Developer",
       items: [
+        {
+          src: "/portfolio/revolutClone.webp",
+          title: "Revolut Clone",
+          description: (
+            <span>
+              I recreated the Revolut website to strengthen my frontend skills.
+              While it&apos;s not an exact replica due to custom fonts, the
+              project allowed me to build an interactive landing page with
+              animations closely matching the original. I also enhanced some
+              elements, including looping videos and interactive behaviors, to
+              improve user experience and showcase my attention to detail.
+            </span>
+          ),
+          link: "/revolutclone",
+        },
         {
           src: "/portfolio/cafepos.webp",
           title: "CafePos",
