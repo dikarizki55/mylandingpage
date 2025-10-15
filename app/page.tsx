@@ -61,6 +61,26 @@ const pageProps = {
       title: "Fullstack Developer",
       items: [
         {
+          src: "/portfolio/webtool3d.webp",
+          title: "3d Webtool",
+          description: (
+            <span>
+              I developed{" "}
+              <span className=" font-medium text-white">Webtool3D</span>, a web
+              application that allows users to generate simple 3D buildings from
+              a selected map area. The tool integrates an interactive 2D map for
+              area selection and instantly visualizes the region in 3D. Built
+              with{" "}
+              <span className=" font-medium text-white">
+                Next.js, TypeScript, Tailwind CSS, Leaflet, and Three.js{" "}
+              </span>
+              , this project combines modern web technologies with geospatial
+              data to provide a smooth and intuitive user experience.
+            </span>
+          ),
+          link: "https://webtool3d.vercel.app/maptothreed",
+        },
+        {
           src: "/portfolio/revolutClone.webp",
           title: "Revolut Clone",
           description: (

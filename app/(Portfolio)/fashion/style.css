@@ -1,0 +1,14 @@
+body {
+  background-color: #ffffff;
+  color: black;
+  font-family: var(--font-satoshi);
+}
+
+.font-satoshi {
+  font-family: var(--font-satoshi);
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat);
+  font-weight: 900;
+}

@@ -84,7 +84,7 @@ const Modal = ({
             ></Image>
           )}
         </div>
-        <div className=" w-[535px] flex flex-col gap-8">
+        <div className=" w-[535px] self-start flex flex-col gap-8">
           <h1 className=" text-white text-5xl font-bold">{item.title}</h1>
           <p className=" font-light text-base text-[#AFAFAF]">
             {/* {item.description.split(`\n`).map((text, i) => (
