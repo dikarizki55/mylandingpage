@@ -98,6 +98,7 @@ const Modal = ({
             {item.link && (
               <Link
                 href={item.link}
+                onClick={() => setIsShow(false)}
                 className=" px-4 py-2 font-bold text-base bg-[#ffffff26] border border-white rounded-full text-white"
               >
                 Open

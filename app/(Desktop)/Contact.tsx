@@ -114,7 +114,7 @@ const Contact = () => {
             value={form.name}
             onChange={handleChange}
             required
-            className=" w-3xs h-7 border border-white rounded-full text-xs px-4 text-white"
+            className=" w-3xs h-7 border border-white focus:outline-none rounded-full text-xs px-4 text-white"
           />
         </div>
         <div className=" flex flex-col gap-2">
@@ -125,7 +125,7 @@ const Contact = () => {
             value={form.email}
             onChange={handleChange}
             required
-            className=" w-3xs h-7 border border-white rounded-full text-xs px-4 text-white"
+            className=" w-3xs h-7 border border-white focus:outline-none  rounded-full text-xs px-4 text-white"
           />
         </div>
         <div className=" flex flex-col gap-2">
@@ -137,7 +137,7 @@ const Contact = () => {
             value={form.message}
             onChange={handleChange}
             required
-            className=" border border-white rounded-2xl text-white px-4 py-2 text-sm h-28"
+            className=" border border-white rounded-2xl focus:outline-none  text-white px-4 py-2 text-sm h-28"
           ></textarea>
         </div>
         <div className=" flex justify-center">

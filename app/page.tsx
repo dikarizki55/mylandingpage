@@ -61,6 +61,22 @@ const pageProps = {
       title: "Fullstack Developer",
       items: [
         {
+          src: "/portfolio/fashion.webp",
+          title: "Fashion Front End",
+          description: (
+            <span>
+              I developed{" "}
+              <span className=" font-medium text-white">Fashion Front end</span>
+              , a web Front End to show the catalog product. I built from figma
+              free template. Built with{" "}
+              <span className=" font-medium text-white">
+                Next.js, TypeScript, Tailwind CSS
+              </span>
+            </span>
+          ),
+          link: "/fashion",
+        },
+        {
           src: "/portfolio/webtool3d.webp",
           title: "3d Webtool",
           description: (
