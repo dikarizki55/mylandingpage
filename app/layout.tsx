@@ -9,13 +9,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dika Rizki - Fullstack Web Developer & 3D Visual Designer",
+  title: "Dika Rizki - FrontEnd (Fullstack) Web Developer & 3D Visual Designer",
   description:
-    "Dika Rizki is a Fullstack Web Developer with a creative edge in 3D visual design. Skilled in building modern web apps using Next.js, Tailwind CSS, Supabase, and Three.js, with strong experience in Blender-based 3D graphics.",
+    "Dika Rizki is a FrontEnd (Fullstack) Web Developer with a creative edge in 3D visual design. Skilled in building modern web apps using Next.js, Tailwind CSS, Supabase, and Three.js, with strong experience in Blender-based 3D graphics.",
   openGraph: {
-    title: "Dika Rizki - Fullstack Web Developer & 3D Visual Designer",
+    title:
+      "Dika Rizki - FrontEnd (Fullstack) Web Developer & 3D Visual Designer",
     description:
-      "Explore a unique blend of fullstack development and 3D creativity. From database-driven web apps to real-time 3D interfaces — all built with clean code and design precision.",
+      "Explore a unique blend of FrontEnd (Fullstack) development and 3D creativity. From database-driven web apps to real-time 3D interfaces — all built with clean code and design precision.",
     url: "https://mylandingpage-git-master-dika-rizkis-projects.vercel.app/",
     siteName: "Dika Rizki Portfolio",
     // images: [
@@ -30,7 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dika Rizki - Fullstack Web Developer & 3D Visual Designer",
+    title:
+      "Dika Rizki - FrontEnd (Fullstack) Web Developer & 3D Visual Designer",
     description:
       "Discover web applications, UI/UX systems, and 3D-powered interactions — crafted with Next.js, Supabase, and Blender.",
     // images: ["https://yourdomain.com/twitter-thumbnail.jpg"],
