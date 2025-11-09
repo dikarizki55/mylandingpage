@@ -21,9 +21,10 @@ export default function AnimatedRect({
 
   const progRef = useRef(0);
   const progRotRef = useRef(0);
-  const [transition, setTransition] = useState(false);
+  // const [transition, setTransition] = useState(false);
   const [toDef, setToDef] = useState(false);
   const internalChange = useRef(false);
+  const transition = useRef(false);
 
   const timeoutRef = useRef<NodeJS.Timeout>(null);
 
@@ -42,7 +43,7 @@ export default function AnimatedRect({
   useEffect(() => {
     if (!internalChange.current) {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      setTransition(true);
+      transition.current = true;
       progRef.current = 0;
       progRotRef.current = 0;
 
@@ -75,38 +76,36 @@ export default function AnimatedRect({
     }
   }, [select]);
 
-  useEffect(() => {
-    if (!transition) {
-      timeoutRef.current = setTimeout(() => {
-        setToDef(true);
-        progRef.current = 0;
-        internalChange.current = true;
-        setSelect(1);
+  const moveToDefault = () => {
+    timeoutRef.current = setTimeout(() => {
+      setToDef(true);
+      progRef.current = 0;
+      internalChange.current = true;
+      setSelect(1);
 
-        startQuats.current = slideRef.current.map((item) => {
-          const q = new THREE.Quaternion();
-          item?.group?.getWorldQuaternion(q);
-          return q;
-        });
+      startQuats.current = slideRef.current.map((item) => {
+        const q = new THREE.Quaternion();
+        item?.group?.getWorldQuaternion(q);
+        return q;
+      });
 
-        startQuatsMesh.current = slideRef.current.map((item) => {
-          const rot = item?.mesh?.rotation || new THREE.Euler(0, 0, 0);
-          return new THREE.Quaternion().setFromEuler(rot);
-        });
+      startQuatsMesh.current = slideRef.current.map((item) => {
+        const rot = item?.mesh?.rotation || new THREE.Euler(0, 0, 0);
+        return new THREE.Quaternion().setFromEuler(rot);
+      });
 
-        defRot.current = slideRef.current.map((_, idx) => {
-          return {
-            endGroup: new THREE.Quaternion().setFromEuler(
-              new THREE.Euler(0, 0, THREE.MathUtils.degToRad(idx * -15 + 15))
-            ),
-            endMesh: new THREE.Quaternion().setFromEuler(
-              new THREE.Euler(0, THREE.MathUtils.degToRad(-35), 0)
-            ),
-          };
-        });
-      }, 3000);
-    }
-  }, [setSelect, transition]);
+      defRot.current = slideRef.current.map((_, idx) => {
+        return {
+          endGroup: new THREE.Quaternion().setFromEuler(
+            new THREE.Euler(0, 0, THREE.MathUtils.degToRad(idx * -15 + 15))
+          ),
+          endMesh: new THREE.Quaternion().setFromEuler(
+            new THREE.Euler(0, THREE.MathUtils.degToRad(-35), 0)
+          ),
+        };
+      });
+    }, 3000);
+  };
 
   useFrame((_, delta) => {
     if (toDef) {
@@ -133,7 +132,7 @@ export default function AnimatedRect({
       }
     }
 
-    if (transition) {
+    if (transition.current) {
       const speed = 0.5;
       progRef.current += speed * delta;
       const t = Math.min(progRef.current, 1);
@@ -155,7 +154,10 @@ export default function AnimatedRect({
         }
       });
 
-      if (t >= 1) setTransition(false);
+      if (t >= 1) {
+        transition.current = false;
+        moveToDefault();
+      }
     }
   });
   return (
@@ -176,25 +178,6 @@ export default function AnimatedRect({
           />
         </Fragment>
       ))}
-      {/* <RoundedRect
-        imageSrc="/landingpage/newLanding/fashion.jpg"
-        rotation={[0, 0, -15]}
-      />
-      <RoundedRect
-        // ref={(el) => {
-        //   slideRef.current[0] = el;
-        // }}
-        imageSrc="/landingpage/newLanding/revolutclone.jpg"
-        rotation={[0, 0, 0]}
-      />
-      <RoundedRect
-        imageSrc="/landingpage/newLanding/fashion.jpg"
-        rotation={[0, 0, 15]}
-      />
-      <RoundedRect
-        imageSrc="/landingpage/newLanding/revolutclone.jpg"
-        rotation={[0, 0, 30]}
-      /> */}
     </>
   );
 }

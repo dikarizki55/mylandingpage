@@ -1,32 +1,35 @@
-// subheading for smaller
-// subsubheading for smallest
-
 export default function HeadTitle({
   subHeading = false,
-  subsubHeading = false,
   title,
   subtitle,
+  customColor,
+  darkMode = false,
 }: {
   subHeading?: boolean;
-  subsubHeading?: boolean;
   title: string;
   subtitle: string;
+  customColor?: string;
+  darkMode?: boolean;
 }) {
   return (
     <div
       className={` w-full flex flex-col  ${
-        subsubHeading ? "items-start lg:items-center" : "items-center"
+        subHeading ? "items-start lg:items-center" : "items-center"
       }`}
     >
-      <h4 className={`font-semibold text-[17px] lg:text-2xl`}>{subtitle}</h4>
+      <h4
+        className={`font-semibold text-[17px] lg:text-2xl ${
+          darkMode ? "text-white" : ""
+        }`}
+      >
+        {subtitle}
+      </h4>
       <h1
         className={` font-bold ${
-          subHeading
-            ? subsubHeading
-              ? "text-[28px] lg:text-[48px]"
-              : "text-[41px] lg:text-[64px] "
-            : "text-4xl lg:text-[64px] "
-        } bg-gradient-headline bg-clip-text text-transparent`}
+          subHeading ? "text-[28px] lg:text-[48px]" : "text-4xl lg:text-[64px] "
+        } ${
+          customColor || "bg-gradient-headline bg-clip-text text-transparent"
+        }`}
       >
         {title}
       </h1>
