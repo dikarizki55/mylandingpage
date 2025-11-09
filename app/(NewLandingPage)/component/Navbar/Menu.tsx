@@ -46,7 +46,7 @@ export default function Menu({ data }: { data: string[] }) {
                 animate="active"
                 exit="inactive"
                 variants={variants}
-                className=" w-full h-screen bg-white fixed top-0 left-0 flex flex-col px-15 py-20 gap-8"
+                className=" w-full h-screen bg-white fixed top-0 left-0 flex flex-col px-15 py-20 gap-8 z-2"
               >
                 <div
                   className=" absolute right-5 top-5"

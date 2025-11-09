@@ -12,7 +12,7 @@ export default function Navbar() {
     "contact",
   ];
   return (
-    <div className=" w-full flex justify-between lg:justify-center lg:gap-14 items-center px-6 h-14 absolute z-100">
+    <div className=" w-full flex justify-between lg:justify-center lg:gap-14 items-center px-6 h-14 absolute z-1">
       <h3 className=" font-bold text-xl">DIKA</h3>
       {menu.map((item, idx) => (
         <Link

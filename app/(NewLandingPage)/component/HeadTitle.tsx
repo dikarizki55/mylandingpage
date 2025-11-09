@@ -1,3 +1,6 @@
+// subheading for smaller
+// subsubheading for smallest
+
 export default function HeadTitle({
   subHeading = false,
   subsubHeading = false,

@@ -131,7 +131,13 @@ export default function NewLanding() {
             },
           ]}
         />
-        <GoToWebBtn href="/fashion" />
+        <div className=" flex flex-col gap-5 items-center">
+          <GoToWebBtn href="/fashion" />
+          <GoToWebBtn
+            github
+            href="https://github.com/dikarizki55/mylandingpage/tree/master/app/(Portfolio)/fashion"
+          />
+        </div>
         <HeadTitle
           title="Revolut Clone"
           subtitle="Front-End"
@@ -142,7 +148,13 @@ export default function NewLanding() {
           I developed [[Revolut Clone Front-End,]] a web Front End of Landing
           Page. I built with [[Next.js, TypeScript, Tailwind CSS]]
         </ImageCard>
-        <GoToWebBtn href="/revolutclone" />
+        <div className=" flex flex-col gap-5 items-center">
+          <GoToWebBtn href="/revolutclone" />
+          <GoToWebBtn
+            github
+            href="https://github.com/dikarizki55/mylandingpage/tree/master/app/(Portfolio)/revolutclone"
+          />
+        </div>
         <HeadTitle
           title="3d Weather"
           subtitle="Front-End"
@@ -154,92 +166,140 @@ export default function NewLanding() {
           explore the potential idea that add [[3d Object]] inside a Website. I
           built with [[Next.js, R3F, Three.js, TypeScript, Tailwind CSS]]
         </ImageCard>
-        <GoToWebBtn href="/revolutclone" />
-      </section>
-      <section
-        className=" w-full px-9 flex flex-col items-center gap-20 py-20 bg-gradient-section"
-        id="full-stack"
-      >
-        <HeadTitle title="Full-Stack" subtitle="My Portfolio" />
-        <ImageCard imgSrc="/landingpage/newLanding/cafepos.jpg">
-          I developed [[Full-Stack CafePos]], a web Full-Stack to order food by
-          [[Scan QR]] on the table. I Built with [[Next.js, TypeScript, Tailwind
-          CSS, Prisma, Supabase Database.]]
-        </ImageCard>
-        <CarouselRadio
-          data={[
-            {
-              title: "Home",
-              imgSrc: "/landingpage/newLanding/cafepos/cafepos home.png",
-              description:
-                "Fresh Interface and smooth Animation. Easiest way to your customer to order the food",
-              iconSvg: <IconHome />,
-            },
-            {
-              title: "Scan QR",
-              imgSrc: "/landingpage/newLanding/cafepos/cafepos scan.png",
-              description:
-                "Just scan QR on the table and voila! the customers can self order",
-              iconSvg: <IconQR />,
-            },
-            {
-              title: "Menu Details",
-              imgSrc: "/landingpage/newLanding/cafepos/cafepos detail.png",
-              description:
-                "Simple and fully informative details of menu. With interactive interface.",
-              iconSvg: <IconMenuProduct />,
-            },
-            {
-              title: "Cart Menu",
-              imgSrc: "/landingpage/newLanding/cafepos/cafepos cart.png",
-              description:
-                "Organize the order with some short steps and effective.",
-              iconSvg: <IconCart />,
-            },
-            {
-              title: "Transaction",
-              imgSrc: "/landingpage/newLanding/cafepos/cafepos transaction.png",
-              description:
-                "Online receipt that have animated information of status order.",
-              iconSvg: <IconWallet />,
-            },
-          ]}
-        />
-        <div className=" flex flex-col gap-5 items-center">
-          <GoToWebBtn href="https://cafepos-git-main-dika-rizkis-projects.vercel.app/?table=2" />
+        <div className=" flex flex-col items-center gap-5">
+          <GoToWebBtn href="/revolutclone" />
           <GoToWebBtn
-            href="https://cafepos-git-main-dika-rizkis-projects.vercel.app/admin"
-            customText="Go to Admin Page"
+            github
+            href="https://github.com/dikarizki55/webtool3d/tree/main/app/weather"
           />
         </div>
       </section>
-      <section className=" w-full bg-gradient-section-inv px-9 py-10 flex flex-col gap-10 items-center">
-        <HeadTitle
-          title="Money Journal"
-          subtitle="Full-Stack"
-          subHeading
-          subsubHeading
-        />
-        <ImageCardZigzag
-          data={[
-            {
-              img: "/landingpage/newLanding/moneyjournal/moneyjournal home.jpg",
-              description:
-                "Money Journal is a multi-user web application I built to help users track their daily income and expenses efficiently. Developed with [[Next.js (App Router), Tailwind CSS, shadcn/ui, and Supabase]], the app features [[Google OAuth login]] powered by Auth.js.",
-            },
-            {
-              img: "/landingpage/newLanding/moneyjournal/moneyjournal input.jpg",
-              description:
-                "Simple and multifunction UI. Minimalist and interactive UI UX with [[Shadcn/ui]]",
-            },
-            {
-              img: "/landingpage/newLanding/moneyjournal/moneyjournal ai.jpg",
-              description:
-                " And can easily add data with [[AI]] (add data with JSON type)",
-            },
-          ]}
-        />
+      <section className=" w-full " id="full-stack">
+        <div className=" w-full px-9 flex flex-col items-center gap-20 py-20 bg-gradient-section">
+          <HeadTitle title="Full-Stack" subtitle="My Portfolio" />
+          <ImageCard imgSrc="/landingpage/newLanding/cafepos.jpg">
+            I developed [[Full-Stack CafePos]], a web Full-Stack to order food
+            by [[Scan QR]] on the table. I Built with [[Next.js, TypeScript,
+            Tailwind CSS, Prisma, Supabase Database.]]
+          </ImageCard>
+          <CarouselRadio
+            data={[
+              {
+                title: "Home",
+                imgSrc: "/landingpage/newLanding/cafepos/cafepos home.png",
+                description:
+                  "Fresh Interface and smooth Animation. Easiest way to your customer to order the food",
+                iconSvg: <IconHome />,
+              },
+              {
+                title: "Scan QR",
+                imgSrc: "/landingpage/newLanding/cafepos/cafepos scan.png",
+                description:
+                  "Just scan QR on the table and voila! the customers can self order",
+                iconSvg: <IconQR />,
+              },
+              {
+                title: "Menu Details",
+                imgSrc: "/landingpage/newLanding/cafepos/cafepos detail.png",
+                description:
+                  "Simple and fully informative details of menu. With interactive interface.",
+                iconSvg: <IconMenuProduct />,
+              },
+              {
+                title: "Cart Menu",
+                imgSrc: "/landingpage/newLanding/cafepos/cafepos cart.png",
+                description:
+                  "Organize the order with some short steps and effective.",
+                iconSvg: <IconCart />,
+              },
+              {
+                title: "Transaction",
+                imgSrc:
+                  "/landingpage/newLanding/cafepos/cafepos transaction.png",
+                description:
+                  "Online receipt that have animated information of status order.",
+                iconSvg: <IconWallet />,
+              },
+            ]}
+          />
+          <div className=" flex flex-col gap-5 items-center">
+            <GoToWebBtn href="https://cafepos-git-main-dika-rizkis-projects.vercel.app/?table=2" />
+            <GoToWebBtn
+              href="https://cafepos-git-main-dika-rizkis-projects.vercel.app/admin"
+              customText="Go to Admin Page"
+            />
+            <GoToWebBtn github href="https://github.com/dikarizki55/cafepos" />
+          </div>
+        </div>
+        <div className=" w-full bg-gradient-section-inv px-9 py-10 flex flex-col gap-10 items-center">
+          <HeadTitle
+            title="Money Journal"
+            subtitle="Full-Stack"
+            subHeading
+            subsubHeading
+          />
+          <ImageCardZigzag
+            data={[
+              {
+                img: "/landingpage/newLanding/moneyjournal/moneyjournal home.jpg",
+                description:
+                  "Money Journal is a multi-user web application I built to help users track their daily income and expenses efficiently. Developed with [[Next.js (App Router), Tailwind CSS, shadcn/ui, and Supabase]], the app features [[Google OAuth login]] powered by Auth.js.",
+              },
+              {
+                img: "/landingpage/newLanding/moneyjournal/moneyjournal input.jpg",
+                description:
+                  "Simple and multifunction UI. Minimalist and interactive UI UX with [[Shadcn/ui]]",
+              },
+              {
+                img: "/landingpage/newLanding/moneyjournal/moneyjournal ai.jpg",
+                description:
+                  " And can easily add data with [[AI]] (add data with JSON type)",
+              },
+            ]}
+          />
+          <div className=" flex flex-col gap-5 items-center">
+            <GoToWebBtn href="https://moneyjournal-git-main-dika-rizkis-projects.vercel.app/" />
+            <GoToWebBtn
+              github
+              href="https://github.com/dikarizki55/moneyjournal"
+            />
+          </div>
+        </div>
+        <div className=" w-full bg-gradient-section px-9 py-10 flex flex-col gap-10 items-center">
+          <HeadTitle
+            title="Map to 3d"
+            subtitle="Full-Stack"
+            subHeading
+            subsubHeading
+          />
+          <ImageCardZigzag
+            data={[
+              {
+                img: "/landingpage/newLanding/mapto3d/mapto3d.jpg",
+                description:
+                  "Map to 3d is a web application I built to generate simple 3D buildings from a selected map area. Developed with [[Next.js (App Router), R3F, Three.JS, Leafletmap, Tailwind CSS]]",
+              },
+              {
+                img: "/landingpage/newLanding/mapto3d/mapto3d draw.jpg",
+                description: "Just draw Rectangle Area in the maps",
+              },
+              {
+                img: "/landingpage/newLanding/mapto3d/mapto3d 3d.jpg",
+                description:
+                  "And it will be generate 3d building. The color of building can change as your preference",
+              },
+            ]}
+          />
+          <div className=" flex flex-col gap-5 items-center">
+            <GoToWebBtn href="https://webtool3d.vercel.app/maptothreed" />
+            <GoToWebBtn
+              github
+              href="https://github.com/dikarizki55/webtool3d/tree/main/app/maptothreed"
+            />
+          </div>
+        </div>
       </section>
+      <section className=""></section>
     </div>
   );
 }
