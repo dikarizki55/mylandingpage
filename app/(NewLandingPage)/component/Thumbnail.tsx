@@ -15,6 +15,8 @@ export default function Thumbnail({
 }) {
   const [select, setSelect] = useState(1);
 
+  const [disableBtn, setDisableBtn] = useState(false);
+
   return (
     <div className=" w-full">
       <div className=" w-full h-[260px] lg:h-[700px] lg:-mt-10 ">
@@ -46,6 +48,7 @@ export default function Thumbnail({
           <AnimatedRect
             select={select}
             setSelect={setSelect}
+            setDisable={setDisableBtn}
             img={data.map((item) => item.img)}
           />
         </Canvas>
@@ -62,20 +65,24 @@ export default function Thumbnail({
       <div className=" absolute right-8 lg:top-[700px] lg:right-80 flex gap-4 mt-3">
         <button
           className={`w-9 aspect-square rounded-full bg-[#d2d2d7]/60 flex items-center justify-center  ${
-            select === 0 ? "opacity-45" : "opacity-100 cursor-pointer"
+            select === 0 || disableBtn
+              ? "opacity-45"
+              : "opacity-100 cursor-pointer"
           } transition-all duration-300`}
-          onClick={() => setSelect(Math.max(select - 1, 0))}
+          onClick={() => {
+            if (!disableBtn) setSelect(Math.max(select - 1, 0));
+          }}
         >
           <IconRightArrow className=" text-black/60 rotate-180 -ml-0.5" />
         </button>
         <button
           className={`w-9 aspect-square rounded-full bg-[#d2d2d7]/60 flex items-center justify-center ${
-            select === data.length - 1
+            select === data.length - 1 || disableBtn
               ? "opacity-45"
               : "opacity-100 cursor-pointer"
           }  transition-all duration-300`}
           onClick={() => {
-            setSelect(Math.min(select + 1, data.length - 1));
+            if (!disableBtn) setSelect(Math.min(select + 1, data.length - 1));
           }}
         >
           <IconRightArrow className=" text-black/60 ml-0.5" />

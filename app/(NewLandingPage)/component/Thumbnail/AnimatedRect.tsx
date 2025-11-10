@@ -9,9 +9,11 @@ export default function AnimatedRect({
   select,
   setSelect,
   img,
+  setDisable,
 }: {
   select: number;
   setSelect: React.Dispatch<React.SetStateAction<number>>;
+  setDisable: React.Dispatch<React.SetStateAction<boolean>>;
   img: string[];
 }) {
   const slideRef = useRef<
@@ -81,6 +83,7 @@ export default function AnimatedRect({
   const moveToDefault = () => {
     timeoutRef.current = setTimeout(() => {
       setToDef(true);
+      setDisable(true);
       progRef.current = 0;
       internalChange.current = true;
       setSelect(1);
@@ -131,6 +134,7 @@ export default function AnimatedRect({
       if (t >= 1) {
         setToDef(false);
         internalChange.current = false;
+        setDisable(false);
       }
     }
 
