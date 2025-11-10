@@ -78,9 +78,9 @@ export default function CarouselRadio({
           className=" w-full h-full  rounded-[16px] overflow-x-hidden flex "
         >
           {data.map((item, idx) => (
-            <div
+            <button
               key={idx + item.title}
-              className={`flex-none w-1/3 lg:w-1/5 flex flex-col px-2 items-center py-5 gap-2 rounded-[16px] relative `}
+              className={`flex-none w-1/3 lg:w-1/5 flex flex-col px-2 items-center py-5 gap-2 rounded-[16px] relative cursor-pointer `}
               onClick={() => setSelect(idx)}
             >
               {idx === select && (
@@ -109,7 +109,7 @@ export default function CarouselRadio({
               >
                 {item.title}
               </div>
-            </div>
+            </button>
           ))}
         </div>
         <div

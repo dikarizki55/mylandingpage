@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "./component/Navbar";
 import "./style.css";
-import { pageProps } from "../data";
 import Thumbnail from "./component/Thumbnail";
 import BoldP from "./component/BoldP";
 import CarouselVertical from "./component/CarouselVertical";
@@ -17,12 +16,14 @@ import {
   IconLinkedin,
   IconMail,
   IconMenuProduct,
+  IconMessage,
   IconQR,
   IconWallet,
 } from "./component/ui/Icon";
 import ImageCardZigzag from "./component/ImageCardZigzag";
 import Section from "./component/Section";
 import Link from "next/link";
+import { createMesssage } from "./action/contact";
 
 export default function NewLanding() {
   return (
@@ -33,7 +34,34 @@ export default function NewLanding() {
         className="!gap-0 !lg:gap-0 relative !pt-20 !px-0"
       >
         <HeadTitle title="PORTFOLIO" subtitle="Thumbnail" />
-        <Thumbnail />
+        <Thumbnail
+          data={[
+            {
+              name: "Revolut Clone Front-End",
+              img: "/landingpage/newLanding/revolutclone.jpg",
+            },
+            {
+              name: "Fashion Front-End",
+              img: "/landingpage/newLanding/fashion.jpg",
+            },
+            {
+              name: "3d Weather Front-End",
+              img: "/landingpage/newLanding/weather.jpg",
+            },
+            {
+              name: "Cafepos Full-Stack",
+              img: "/landingpage/newLanding/cafepos.jpg",
+            },
+            {
+              name: "MoneyJournal Full-Stack",
+              img: "/landingpage/newLanding/moneyjournal.jpg",
+            },
+            {
+              name: "Map to 3d Full-Stack",
+              img: "/landingpage/newLanding/mapto3d/mapto3d 3d.jpg",
+            },
+          ]}
+        />
       </Section>
       <Section id="profile" invBg>
         <h1 className=" font-bold text-4xl bg-gradient-title bg-clip-text text-transparent lg:text-[64px]">
@@ -42,7 +70,7 @@ export default function NewLanding() {
         <div className=" flex flex-col gap-8 items-center w-full lg:flex-row-reverse lg:gap-[56px]">
           <Image
             alt="myPhoto"
-            src={pageProps.home.image}
+            src={"/landingpage/myphotos.png"}
             width={592}
             height={725}
             className=" brightness-115 saturate-95 rounded-[38px] lg:w-full"
@@ -280,7 +308,7 @@ export default function NewLanding() {
           />
         </div>
       </Section>
-      <Section customBg="bg-black" id="3d-artist">
+      <Section customBg="bg-black" id="3d-artist" className=" lg:px-0">
         <HeadTitle
           title="3d-Artist"
           subtitle="My Portfolio"
@@ -310,16 +338,20 @@ export default function NewLanding() {
             video
             imgSrc="https://zgqwlzpqthoiuspzjnin.supabase.co/storage/v1/object/public/mylandingpage/portfolio/Woman%20Blender%20Character.mp4"
           >
-            I developed [[3d Weather Front-End,]] a web Front End of 3d weather.
-            I explore the potential idea that add [[3d Object]] inside a
-            Website. I built with [[Next.js, R3F, Three.js, TypeScript, Tailwind
-            CSS]]
+            This is a personal project where I created a stylized 3D character
+            of a young female with a [[cute/chibi-inspired design.]] The
+            character was fully built in [[Blender]], from modeling to final
+            rigging and animation. I developed a custom [[full-body rig,]]
+            including facial controls and [[IK/FK]] systems, allowing the
+            character to be fully animated. As part of this project, I also
+            created a short test animation to [[demonstrate]] the rig&apos;s
+            flexibility and usability for [[expressive motion]]
           </ImageCard>
         </div>
       </Section>
       <Section>
-        <h1 className="text-4xl font-bold">Contact me</h1>
-        <div className=" px-8 py-6 rounded-[20px] flex flex-col gap-5 bg-white">
+        <h1 className="text-4xl lg:text-5xl font-bold">Contact me</h1>
+        <div className=" w-full lg:w-106 px-8 py-6 rounded-[20px] flex flex-col gap-5 bg-white">
           {[
             {
               text: "dika55rizki@gmail.com",
@@ -337,7 +369,12 @@ export default function NewLanding() {
               icon: <IconLinkedin />,
             },
           ].map((item, i) => (
-            <Link key={i} href={item.link} className=" flex gap-5 items-center">
+            <Link
+              target="blank"
+              key={i}
+              href={item.link}
+              className=" flex gap-5 items-center"
+            >
               {React.cloneElement(item.icon, {
                 className: "aspect-square w-6",
               })}
@@ -345,6 +382,44 @@ export default function NewLanding() {
             </Link>
           ))}
         </div>
+        <form
+          action={createMesssage}
+          className=" bg-white w-full lg:w-106 flex flex-col items-center gap-7 px-8 py-6 rounded-[20px] text-[#6E6E73]"
+        >
+          <div className=" w-full flex flex-col gap-3">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              required
+              className="bg-[#F5F5F7] rounded-xl h-10 px-3 text-[#3e3e41] focus:outline-[#0071E3]"
+            ></input>
+          </div>
+          <div className="  w-full flex flex-col gap-3">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              className="bg-[#F5F5F7] rounded-xl h-10 px-3 text-[#3e3e41] focus:outline-[#0071E3]"
+            ></input>
+          </div>
+          <div className="  w-full flex flex-col gap-3">
+            <label htmlFor="message">Message</label>
+            <textarea
+              name="message"
+              required
+              className="bg-[#F5F5F7] rounded-xl h-27 p-3 text-[#3e3e41] focus:outline-[#0071E3]"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className=" flex gap-4 lg:gap-7 items-center text-base lg:text-xl p-2 pl-6 lg:p-2.5 lg:pl-10 bg-[#E8E8ED]/72 rounded-full cursor-pointer"
+          >
+            Send Message
+            <IconMessage className=" text-[#0071E3] w-10 lg:w-14 aspect-square" />
+          </button>
+        </form>
       </Section>
     </div>
   );

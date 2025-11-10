@@ -13,6 +13,7 @@ export default function GoToWebBtn({
   return (
     <Link
       href={href}
+      target="blank"
       className=" flex gap-4 lg:gap-7 items-center text-base lg:text-xl p-2 pl-6 lg:p-2.5 lg:pl-10 bg-[#E8E8ED]/72 rounded-full cursor-pointer"
     >
       {customText || github ? "Open Source" : "Go to Web"}

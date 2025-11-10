@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@/app/(Portfolio)/fashion/products/[id]/hooks/useMediaQuery";
 
-export default function Thumbnail() {
+export default function Thumbnail({
+  data,
+}: {
+  data: { name: string; img: string }[];
+}) {
   const [select, setSelect] = useState(1);
 
   return (
@@ -39,7 +43,11 @@ export default function Thumbnail() {
             shadow-bias={-0.1}
             shadow-radius={1000}
           />
-          <AnimatedRect select={select} setSelect={setSelect} />
+          <AnimatedRect
+            select={select}
+            setSelect={setSelect}
+            img={data.map((item) => item.img)}
+          />
         </Canvas>
       </div>
       <motion.div
@@ -49,34 +57,29 @@ export default function Thumbnail() {
         key={select}
         className=" w-full font-light text-center absolute -mt-7 text-[18px] text-[#6E6E73] left-1/2 -translate-x-1/2 lg:top-[650px] lg:text-[28px]"
       >
-        {
-          [
-            "Revolut Clone Front-End",
-            "Fashion Front-End",
-            "Cafepos Full-Stack",
-            "MoneyJournal Full-Stack",
-          ][select]
-        }
+        {data[select].name}
       </motion.div>
       <div className=" absolute right-8 lg:top-[700px] lg:right-80 flex gap-4 mt-3">
-        <div
-          className={`w-9 aspect-square rounded-full bg-[#d2d2d7]/60 flex items-center justify-center ${
-            select === 0 ? "opacity-45" : "opacity-100"
+        <button
+          className={`w-9 aspect-square rounded-full bg-[#d2d2d7]/60 flex items-center justify-center  ${
+            select === 0 ? "opacity-45" : "opacity-100 cursor-pointer"
           } transition-all duration-300`}
           onClick={() => setSelect(Math.max(select - 1, 0))}
         >
           <IconRightArrow className=" text-black/60 rotate-180 -ml-0.5" />
-        </div>
-        <div
+        </button>
+        <button
           className={`w-9 aspect-square rounded-full bg-[#d2d2d7]/60 flex items-center justify-center ${
-            select === 3 ? "opacity-45" : "opacity-100"
+            select === data.length - 1
+              ? "opacity-45"
+              : "opacity-100 cursor-pointer"
           }  transition-all duration-300`}
           onClick={() => {
-            setSelect(Math.min(select + 1, 3));
+            setSelect(Math.min(select + 1, data.length - 1));
           }}
         >
           <IconRightArrow className=" text-black/60 ml-0.5" />
-        </div>
+        </button>
       </div>
     </div>
   );

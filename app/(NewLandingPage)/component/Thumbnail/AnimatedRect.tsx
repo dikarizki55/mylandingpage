@@ -8,9 +8,11 @@ import { easing } from "../helper/cubicBezier";
 export default function AnimatedRect({
   select,
   setSelect,
+  img,
 }: {
   select: number;
   setSelect: React.Dispatch<React.SetStateAction<number>>;
+  img: string[];
 }) {
   const slideRef = useRef<
     ({
@@ -162,12 +164,7 @@ export default function AnimatedRect({
   });
   return (
     <>
-      {[
-        "/landingpage/newLanding/revolutclone.jpg",
-        "/landingpage/newLanding/fashion.jpg",
-        "/landingpage/newLanding/cafepos.jpg",
-        "/landingpage/newLanding/moneyjournal.jpg",
-      ].map((item, idx) => (
+      {img.map((item, idx) => (
         <Fragment key={item + idx}>
           <RoundedRect
             ref={(el) => {
